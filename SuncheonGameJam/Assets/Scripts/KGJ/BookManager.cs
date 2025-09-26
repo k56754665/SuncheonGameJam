@@ -52,6 +52,7 @@ public class BookManager : MonoBehaviour
         foreach (AnimalStruct entry in loaded)
         {
             _allEntries.Add(entry);
+            Debug.Log($"[BookManager] Loaded: ID={entry.id}, Name={entry.name}");
         }
     }
     
@@ -79,6 +80,16 @@ public class BookManager : MonoBehaviour
             foreach (var id in data.unlockedIds)
                 _unlockedIds.Add(id);
         }
+    }
+    
+    /// <summary>
+    /// PlayerPrefs에 저장된 도감 데이터 삭제
+    /// </summary>
+    [ContextMenu("Reset Save Data")]
+    public void ResetSaveData()
+    {
+        PlayerPrefs.DeleteKey(SaveKey);
+        _unlockedIds.Clear();
     }
 
     /// <summary>

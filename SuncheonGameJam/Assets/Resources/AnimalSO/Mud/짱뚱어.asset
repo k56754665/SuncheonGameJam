@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8d7915b72df9411c84f39742db2b3d8, type: 3}
-  m_Name: AnimalStruct
+  m_Name: "\uC9F1\uB6B1\uC5B4"
   m_EditorClassIdentifier: 
-  id: 76c273c2a3fd4f9f987412d1a297d9fe
-  animalName: "\uAC2F\uC9C0\uB801\uC774"
+  id: 315d6a408d204c92bffcf3498101652e
+  animalName: "\uC9F1\uB6B1\uC5B4"
   animalImage: {fileID: 0}
   monsterLevel: 0
-  environment: 0
+  environment: 1
   Bounties: 010000000200000003000000040000000500000006000000
-  difficulty: 0
-  animalDesription: "\uC800\uB294 \uAC2F\uC9C0\uB801\uC774\uC785\uB2C8\uB2E4.\n\uC595\uC740
-    \uC9C4\uD759\uC18D\uC5D0 \uC0B4\uC544\uC694."
+  difficulty: 2
+  animalDesription: "\uAC2F\uBC8C \uC704\uB97C \uD3F4\uC9DD\uD3F4\uC9DD! \uC21C\uCC9C\uB9CC\uC758
+    \uB300\uD45C \uC778\uAE30\uC2A4\uD0C0.\n\uC9C0\uCF1C\uBCF4\uACE0 \uC788\uC73C\uBA74
+    \uAE30\uBD84\uC774 \uC88B\uC544\uC838\uC694."

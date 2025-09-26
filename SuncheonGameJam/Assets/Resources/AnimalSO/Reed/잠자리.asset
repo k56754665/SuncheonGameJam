@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8d7915b72df9411c84f39742db2b3d8, type: 3}
-  m_Name: "\uAC8C"
+  m_Name: "\uC7A0\uC790\uB9AC"
   m_EditorClassIdentifier: 
-  id: 1
-  animalName: "\uAC8C"
+  id: f5bf26bb78cb4312867df147dfd2cb41
+  animalName: "\uC7A0\uC790\uB9AC"
   animalImage: {fileID: 0}
   monsterLevel: 0
-  environment: 1
+  environment: 0
   Bounties: 000000000000000000000000000000000000000000000000
-  animalDesription: "\uAC8C"
+  difficulty: 0
+  animalDesription: "\uBC18\uC9DD\uC774\uB294 \uB0A0\uAC1C\uB85C \uC9C0\uADF8\uC7AC\uADF8
+    \uBE44\uD589! \uB208\uC744 \uB9C8\uC8FC\uCE58\uBA74 \uBA3C\uC800 \uB3C4\uB9DD\uAC00\uC694."

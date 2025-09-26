@@ -24,6 +24,7 @@ public class UI_Book : MonoBehaviour
     {
         _canvas = GetComponent<Canvas>();
         MakeBookCells();
+        _scrollRect.verticalNormalizedPosition = 1;
     }
 
     private void MakeBookCells()
@@ -71,9 +72,8 @@ public class UI_Book : MonoBehaviour
     {
         MakeBookCells();
         _scrollRect.verticalNormalizedPosition = 1;
-        _canvas.enabled = true;
-        
         SetDetail(BookManager.Instance.GetAllEntries().First());
+        _canvas.enabled = true;
     }
 
     private void CloseBook()

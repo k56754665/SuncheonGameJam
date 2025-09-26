@@ -19,12 +19,22 @@ public enum EnvironmentType
 [CreateAssetMenu(fileName = "AnimalStruct", menuName = "AnimalObject/AnimalStruct")]
 public class AnimalStruct : ScriptableObject
 {
-    public int id;
+    public string id;
     public string animalName;
     public Sprite animalImage;
     public MonsterLevelType monsterLevel;
     public EnvironmentType environment;
     public int[] Bounties = new int[6];
+    public float difficulty;
     [TextArea]
     public string animalDesription;
+    
+    private void OnValidate()
+    {
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            id = Guid.NewGuid().ToString("N"); // 고유 GUID
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+    }
 }

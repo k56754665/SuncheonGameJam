@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d7915b72df9411c84f39742db2b3d8, type: 3}
+  m_Name: "\uD574\uD30C\uB9AC"
+  m_EditorClassIdentifier: 
+  id: 562f00ad0e4b4c8ebe39da34f965c88d
+  animalName: "\uD574\uD30C\uB9AC"
+  animalImage: {fileID: 0}
+  monsterLevel: 0
+  environment: 2
+  Bounties: 000000000000000000000000000000000000000000000000
+  difficulty: 0
+  animalDesription: "\uB9D0\uB791\uB9D0\uB791 \uD22C\uBA85 \uBCF4\uC11D. \uD558\uC9C0\uB9CC
+    \uC0B4\uC9DD \uB2FF\uC73C\uBA74 \uB530\uB054\uD574\uC694."

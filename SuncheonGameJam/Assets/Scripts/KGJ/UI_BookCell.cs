@@ -19,11 +19,9 @@ public class UI_BookCell : MonoBehaviour, IPointerClickHandler
 
         image.sprite = animal.animalImage;
         image.color = isUnlocked ? Color.white : Color.black;
-        rankText.text = $"{highest}";
+        rankText.text = isUnlocked ? $"{highest}" : String.Empty;
         // 테두리도 변경 필요
     }
-
-    public AnimalStruct GetData() => _data;
 
     public void OnPointerClick(PointerEventData eventData)
     {

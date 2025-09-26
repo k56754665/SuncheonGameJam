@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public enum MonsterLevelType
@@ -18,6 +19,7 @@ public enum EnvironmentType
 [CreateAssetMenu(fileName = "AnimalStruct", menuName = "AnimalObject/AnimalStruct")]
 public class AnimalStruct : ScriptableObject
 {
+    public int id;
     public string animalName;
     public Sprite animalImage;
     public MonsterLevelType monsterLevel;

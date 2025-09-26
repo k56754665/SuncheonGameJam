@@ -48,6 +48,17 @@ public class CharacterControl : MonoBehaviour
             EnvironmentMove eMove = collider.transform.parent.GetComponent<EnvironmentMove>();
             eMove.MoveStart();
         }
+        if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
+        {
+            Debug.Log("포탈 접촉");//잡은 포탈 있으면 거리체크
+        }
+        
+    }
+    private void OnTriggerExit(Collider collider) {
+        if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
+        {
+            Debug.Log("포탈 해제");
+        }
     }
    void Update()
    {

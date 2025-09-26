@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -13,6 +14,7 @@ public class UI_Book : MonoBehaviour
     private GameObject _bookCellPrefab;
     private ScrollRect _scrollRect;
     private Canvas _canvas;
+    private Coroutine _waitCoroutine;
     
     private void Awake()
     {
@@ -23,8 +25,9 @@ public class UI_Book : MonoBehaviour
     private void Start()
     {
         _canvas = GetComponent<Canvas>();
+        _canvas.enabled = true;
         MakeBookCells();
-        _scrollRect.verticalNormalizedPosition = 1;
+        _canvas.enabled = false;
     }
 
     private void MakeBookCells()
@@ -70,10 +73,10 @@ public class UI_Book : MonoBehaviour
 
     private void OpenBook()
     {
+        _canvas.enabled = true;
         MakeBookCells();
         _scrollRect.verticalNormalizedPosition = 1;
         SetDetail(BookManager.Instance.GetAllEntries().First());
-        _canvas.enabled = true;
     }
 
     private void CloseBook()

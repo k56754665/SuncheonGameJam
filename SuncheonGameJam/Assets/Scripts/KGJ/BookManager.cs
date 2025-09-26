@@ -57,7 +57,6 @@ public class BookManager : MonoBehaviour
         foreach (AnimalStruct entry in loaded)
         {
             _allEntries.Add(entry);
-            Debug.Log($"[BookManager] Loaded: ID={entry.id}, Name={entry.animalName}");
         }
     }
 
@@ -96,7 +95,7 @@ public class BookManager : MonoBehaviour
     }
 
     public List<AnimalStruct> GetAllEntries() 
-        => new List<AnimalStruct>(_allEntries).OrderBy(e => e.id).ToList();
+        => new List<AnimalStruct>(_allEntries);
 
     private void OnGUI()
     {

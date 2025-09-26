@@ -11,6 +11,8 @@ public class CharacterControl : MonoBehaviour
 
     [Header("시점 설정")]
     public float rotationSpeed = 3.0f; // 마우스 감도
+    public float verticalLookLimit = 80.0f; 
+    private float rotationX = 0;
 
     private Camera mainCamera;
 
@@ -62,35 +64,45 @@ public class CharacterControl : MonoBehaviour
     }
    void Update()
    {
-      // 1. 마우스 입력으로 캐릭터 회전 처리
-      float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
-      // 캐릭터 자체를 수평으로 회전시킵니다.
-      transform.Rotate(Vector3.up * mouseX); 
+    // 1. 마우스 입력으로 캐릭터 회전 처리
+    float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
+    
+    // 캐릭터 자체를 수평으로 회전시킵니다.
+    transform.Rotate(Vector3.up * mouseX); 
+    float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
+    rotationX -= mouseY; 
+    rotationX = Mathf.Clamp(rotationX, -verticalLookLimit, verticalLookLimit);
 
-      // 2. 중력 적용 (매 프레임)
-      dir.y += Physics.gravity.y * Time.deltaTime; 
+    // 4. 회전 적용
+    // 카메라의 로컬 X축(transform.localRotation)을 기준으로 회전시킵니다.
+    mainCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
 
-      // 3. 캐릭터가 지면에 있는 경우
-      if (controller.isGrounded)
-      {         
-         var h = Input.GetAxis("Horizontal");
-         var v = Input.GetAxis("Vertical");
+    // 2. 중력 적용 (매 프레임)
+    dir.y += Physics.gravity.y * Time.deltaTime; 
 
-         // 🚨 캐릭터의 방향이 아닌, 카메라의 방향을 기준으로 이동 벡터를 계산합니다.
-         // 마우스로 캐릭터가 회전하므로, 카메라 회전과 캐릭터 회전을 일치시키는 것이 일반적입니다.
+    // 3. 캐릭터가 지면에 있는 경우
+    if (controller.isGrounded)
+    {         
+        var h = Input.GetAxis("Horizontal");
+        var v = Input.GetAxis("Vertical");
 
-         // 현재 캐릭터의 앞(forward) 방향과 오른쪽(right) 방향을 사용합니다.
-         Vector3 forward = transform.forward;
-         Vector3 right = transform.right;
+        // 🚨 캐릭터의 방향이 아닌, 카메라의 방향을 기준으로 이동 벡터를 계산합니다.
+        // 마우스로 캐릭터가 회전하므로, 카메라 회전과 캐릭터 회전을 일치시키는 것이 일반적입니다.
 
-         // Y축 중력 성분을 제외한 순수 이동 방향을 계산합니다.
-         Vector3 moveDirection = (forward * v) + (right * h);
-         dir.x = moveDirection.x * speed;
-         dir.z = moveDirection.z * speed;
+        // 현재 캐릭터의 앞(forward) 방향과 오른쪽(right) 방향을 사용합니다.
+        Vector3 forward = transform.forward;
+        Vector3 right = transform.right;
+
+        // Y축 중력 성분을 제외한 순수 이동 방향을 계산합니다.
+        Vector3 moveDirection = (forward * v) + (right * h);
+        dir.x = moveDirection.x * speed;
+        dir.z = moveDirection.z * speed;
          
          // 4. 점프 처리
-         if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             dir.y = jumpPower;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            Debug.Log("공격");
       }
       
       // 5. 캐릭터 이동

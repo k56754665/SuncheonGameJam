@@ -49,10 +49,6 @@ public class UI_Book : MonoBehaviour
 
     private void SetDetail(AnimalStruct animal)
     {
-        if (animal == null)
-        {
-            Debug.Log("animal is null");
-        }
         bool isUnlocked = BookManager.Instance.IsUnlocked(animal.id);
         title.text = isUnlocked ? animal.animalName : "???";
         description.text = isUnlocked ? animal.animalDesription : "";

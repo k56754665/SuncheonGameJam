@@ -23,8 +23,6 @@ public class UI_BookCell : MonoBehaviour, IPointerClickHandler
         // 테두리도 변경 필요
     }
 
-    public AnimalStruct GetData() => _data;
-
     public void OnPointerClick(PointerEventData eventData)
     {
         onClick?.Invoke();

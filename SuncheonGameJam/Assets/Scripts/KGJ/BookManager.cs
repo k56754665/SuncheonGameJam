@@ -97,29 +97,6 @@ public class BookManager : MonoBehaviour
     public List<AnimalStruct> GetAllEntries() 
         => new List<AnimalStruct>(_allEntries);
 
-    private void OnGUI()
-    {
-        float btnWidth = 150f;
-        float btnHeight = 40f;
-        float padding = 10f;
-
-        float x = Screen.width - btnWidth - padding;
-        float y0 = Screen.height - (btnHeight * 2 + padding * 2);
-        float y1 = Screen.height - (btnHeight + padding);
-
-        if (_allEntries.Count > 0 && GUI.Button(new Rect(x, y0, btnWidth, btnHeight), "Unlock First"))
-        {
-            Unlock(_allEntries[0].id, MonsterLevelType.SSS);
-            Debug.Log($"Unlocked {_allEntries[0].id}");
-        }
-
-        if (_allEntries.Count > 1 && GUI.Button(new Rect(x, y1, btnWidth, btnHeight), "Unlock Second"))
-        {
-            Unlock(_allEntries[1].id, MonsterLevelType.A);
-            Debug.Log($"Unlocked {_allEntries[1].id}");
-        }
-    }
-
     [System.Serializable]
     private class SaveData
     {

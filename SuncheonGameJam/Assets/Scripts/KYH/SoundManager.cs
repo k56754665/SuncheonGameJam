@@ -57,7 +57,7 @@ public class SoundManager : Singleton<SoundManager> {
         }
 
         // 테스트용 BGM 실행
-        PlayBGM(SoundType.BGM_Test);
+        //PlayBGM(SoundType.BGM_Test);
     }
     
     #region Subscribe

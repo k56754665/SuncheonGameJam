@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1f7034c0865d54b72bda0429a721fdae, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -353,7 +353,7 @@ Transform:
   m_GameObject: {fileID: 1082057730}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25, y: 0, z: -25}
+  m_LocalPosition: {x: -12.5, y: 0, z: -12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -412,8 +412,8 @@ MonoBehaviour:
   maxX: 0
   minZ: 0
   maxZ: 0
-  minHeight: 4
-  maxHeight: 5
+  minHeight: 3
+  maxHeight: 4
 --- !u!1 &1893398485
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,10 +462,15 @@ MonoBehaviour:
   targetTerrain: {fileID: 1082057732}
   prefabToSpawn: {fileID: 9113108973438869335, guid: 715d5436953004d3cb2910d2ea4a1cb6, type: 3}
   prefabToSpawn2: {fileID: 9113108973438869335, guid: ab24f30af7f544d26bcdd2cdcec60817, type: 3}
+  prefabToSpawn3: {fileID: 3593062756287578344, guid: c7ae85c84082d41aaacb57d62ad5a1c0, type: 3}
+  prefabToSpawn4: {fileID: 1443573998016906375, guid: bb4f9efe40f6f48ffb606ba625897824, type: 3}
   portal: {fileID: 703713497792487187, guid: b1abd04c12be74de59d7128976feeb38, type: 3}
-  spawnCount: 500
-  minSpawnDistance: 2
+  spawnCount: 1000
+  minSpawnDistance: 0.2
   maxAttemptsPerObject: 50
+  portalSpawnCount: 20
+  portalMinSpawnDistance: 2
+  portalMaxAttemptsPerObject: 10
 --- !u!1001 &999311967177863277
 PrefabInstance:
   m_ObjectHideFlags: 0

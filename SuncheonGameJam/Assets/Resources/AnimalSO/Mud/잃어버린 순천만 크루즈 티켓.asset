@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d7915b72df9411c84f39742db2b3d8, type: 3}
+  m_Name: "\uC783\uC5B4\uBC84\uB9B0 \uC21C\uCC9C\uB9CC \uD06C\uB8E8\uC988 \uD2F0\uCF13"
+  m_EditorClassIdentifier: 
+  id: 0ba6ffe197ab487a83a2a0014f85a91c
+  animalName: "\uC783\uC5B4\uBC84\uB9B0 \uC21C\uCC9C\uB9CC \uD06C\uB8E8\uC988 \uD2F0\uCF13"
+  animalImage: {fileID: 0}
+  monsterLevel: 0
+  environment: 1
+  Bounties: 000000000000000000000000000000000000000000000000
+  difficulty: 3
+  animalDesription: "\uBC14\uB78C\uC5D0 \uD719 \uB0A0\uB824\uAC04 \uD45C \uD55C \uC7A5.\n\uB204\uAC00
+    \uCC3E\uC73C\uBA74 \uD06C\uB8E8\uC988 \uD0DC\uC6CC\uC8FC\uB824\uB098?"

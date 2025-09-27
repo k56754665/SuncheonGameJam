@@ -1,13 +1,29 @@
+using TMPro;
 using UnityEngine;
 
 public class UI_Money : MonoBehaviour
 {
     [SerializeField] private Transform moneyRoot;
+    [SerializeField] private TMP_Text moneyText;
     private GameObject _giftMoneyPrefab;
-
+    private MoneyManager _moneyManager;
+    
     private void Awake()
     {
         _giftMoneyPrefab = Resources.Load<GameObject>("UI/UI_GiftMoney");
+    }
+
+    private void Start()
+    {
+        _moneyManager = MoneyManager.Instance;
+        _moneyManager.OnMoneyAdded += UpdateMoneyText;
+        _moneyManager.OnMoneyAdded += MakeMoney;
+        _moneyManager.OnMoneyRemoved += UpdateMoneyText;
+    }
+
+    private void UpdateMoneyText(float amount)
+    {
+        moneyText.text = $"순천사랑상품권 : {MoneyManager.Instance.CurrentMoney}";
     }
 
     private int GetGiftCount(float amount)
@@ -18,7 +34,7 @@ public class UI_Money : MonoBehaviour
         return 9;                          // 그 이상
     }
 
-    public void MakeMoney(float amount)
+    private void MakeMoney(float amount)
     {
         int count = GetGiftCount(amount);
 
@@ -35,15 +51,10 @@ public class UI_Money : MonoBehaviour
         }
     }
 
-    // 디버그용 버튼
-    private void OnGUI()
+    private void OnDestroy()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 200, 200));
-
-        if (GUILayout.Button("Make 100,000")) MakeMoney(100000);
-        if (GUILayout.Button("Make 1,000,000")) MakeMoney(1000000);
-        if (GUILayout.Button("Make 10,000,000")) MakeMoney(10000000);
-
-        GUILayout.EndArea();
+        _moneyManager.OnMoneyAdded -= UpdateMoneyText;
+        _moneyManager.OnMoneyAdded -= MakeMoney;
+        _moneyManager.OnMoneyRemoved -= UpdateMoneyText;
     }
 }

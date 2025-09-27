@@ -56,8 +56,6 @@ public class SoundManager : Singleton<SoundManager> {
             _clipMap[e.type] = e.clip;
         }
 
-        // 테스트용 BGM 실행
-        //PlayBGM(SoundType.BGM_Test);
     }
     
     #region Subscribe
@@ -82,7 +80,14 @@ public class SoundManager : Singleton<SoundManager> {
     // -------------------
     public void Play(SoundType type) {
         if (_clipMap.TryGetValue(type, out var clip)) {
+            Debug.Log(type);
+            Debug.Log(clip);
             sfxSource.PlayOneShot(clip);
+        }
+        foreach(var e in _clipMap)
+        {
+            Debug.Log(e.Key);
+            Debug.Log(e.Value);
         }
     }
 
@@ -162,6 +167,10 @@ public class SoundManager : Singleton<SoundManager> {
         // 볼륨 최종 보정
         bgmSource.volume = originalVol;
     }
+    public bool SFXLOOPINGISPLAYING()
+    {
+        return sfxLoopSource.isPlaying;
+    }
 }
 
 public enum SoundType {
@@ -173,5 +182,6 @@ public enum SoundType {
     GetAnimal,
     CatchingAnimal,
     FailGet,
-    BGM_Test
+    BGM_Reed,
+    BGM_Sea
 }

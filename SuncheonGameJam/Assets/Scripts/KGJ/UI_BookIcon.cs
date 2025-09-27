@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class UI_BookIcon : MonoBehaviour
 {
+    [SerializeField] private Sprite openedImage;
+    [SerializeField] private Sprite closedImage;
+    private Image _image;
     private Button _button;
     private UI_Book _uiBook;
     private TMP_Text _text;
@@ -12,6 +15,7 @@ public class UI_BookIcon : MonoBehaviour
     {
         _uiBook = FindAnyObjectByType<UI_Book>();
         _button = GetComponentInChildren<Button>();
+        _image = GetComponentInChildren<Image>();
         _text = GetComponentInChildren<TMP_Text>();
 
         _button.onClick.AddListener(ToggleBook);
@@ -20,6 +24,7 @@ public class UI_BookIcon : MonoBehaviour
     private void ToggleBook()
     {
         bool isOpen = _uiBook.ToggleBook();
-        _text.text = isOpen ? "×" : "도감";
+        _image.sprite = isOpen ? openedImage : closedImage;
+        _text.text = isOpen ? "" : "도감";
     }
 }

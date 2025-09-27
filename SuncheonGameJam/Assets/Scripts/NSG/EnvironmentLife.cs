@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnvironmentLife : MonoBehaviour
 {
-    int health = 3;
+    public int health = 3;
     public GameObject protalImage1;
     public GameObject protalImage2;
     public ParticleSystem particle;

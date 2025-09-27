@@ -6,6 +6,8 @@ public class AreaButton : MonoBehaviour
 {
     [SerializeField] private EnvironmentType _environmentType;
     private Button _button;
+    [SerializeField, Range(1, 3)]
+    private int _stage = 1;
     private SceneManagerSystem _scene = new();
 
     private void Start()
@@ -16,10 +18,11 @@ public class AreaButton : MonoBehaviour
 
     private void LoadAreaScene()
     {
-        _scene.LoadScene(GetAreaName(_environmentType));
+        MiniGameManager.Instance.AnimalPoolData.SetMap(_environmentType, _stage - 1);
+        _scene.LoadScene(GetAreaName(_environmentType,_stage));
     }
     
-    private string GetAreaName(EnvironmentType environmentType)
+    private string GetAreaName(EnvironmentType environmentType,int stage)
     {
         string areaName;
         
@@ -38,6 +41,7 @@ public class AreaButton : MonoBehaviour
                 areaName = "ReedMap";
                 break;
         }
+        
 
         return areaName;
     }

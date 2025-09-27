@@ -30,7 +30,7 @@ public class SoundManager : Singleton<SoundManager> {
             sfxSource = go.AddComponent<AudioSource>();
             sfxSource.playOnAwake = false;
             sfxSource.loop = false;
-            sfxSource.volume = 0.3f; // 기본 SFX 볼륨
+            sfxSource.volume = 0.6f; // 기본 SFX 볼륨
         }
         if (bgmSource == null) {
             var go = new GameObject("BGM_AudioSource");
@@ -38,7 +38,7 @@ public class SoundManager : Singleton<SoundManager> {
             bgmSource = go.AddComponent<AudioSource>();
             bgmSource.playOnAwake = false;
             bgmSource.loop = true;
-            bgmSource.volume = 0.3f; // 기본 BGM 볼륨
+            bgmSource.volume = 0.15f; // 기본 BGM 볼륨
         }
         // 🔹 추가: 루프용 SFX 채널 생성
         if (sfxLoopSource == null) {

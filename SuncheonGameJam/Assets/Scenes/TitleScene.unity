@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 49944372}
   - component: {fileID: 49944371}
   - component: {fileID: 49944370}
+  - component: {fileID: 49944373}
   m_Layer: 5
   m_Name: StartBtn
   m_TagString: Untagged
@@ -240,6 +241,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49944368}
   m_CullTransparentMesh: 1
+--- !u!114 &49944373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49944368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ae437ac2d0f6f49979c9a12c647d53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339834625
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,10 +684,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1102297369456382936, guid: 2ff070fe7a717aa4aa8bdc0d97a36ab3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1427772584380534919, guid: 2ff070fe7a717aa4aa8bdc0d97a36ab3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

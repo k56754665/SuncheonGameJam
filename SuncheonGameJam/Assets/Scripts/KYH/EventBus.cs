@@ -25,15 +25,15 @@ public static class EventBus
         _onSceneLoaded?.Invoke();
     }
     
-    private static Action _onStartMiniGame;
-    public static void SubscribeStartMiniGame(Action handler) => _onStartMiniGame += handler;
-    public static void UnsubscribeStartMiniGame(Action handler) => _onStartMiniGame -= handler;
-    public static void PublishStartMiniGame() => _onStartMiniGame?.Invoke();
+    private static Action<AnimalStruct> _onStartMiniGame;
+    public static void SubscribeStartMiniGame(Action<AnimalStruct> handler) => _onStartMiniGame += handler;
+    public static void UnsubscribeStartMiniGame(Action<AnimalStruct> handler) => _onStartMiniGame -= handler;
+    public static void PublishStartMiniGame(AnimalStruct animal) => _onStartMiniGame?.Invoke(animal);
     
-    private static Action<bool> _onEndMiniGame;
-    public static void SubscribeEndMiniGame(Action<bool> handler) => _onEndMiniGame += handler;
-    public static void UnsubscribeEndMiniGame(Action<bool> handler) => _onEndMiniGame -= handler;
-    public static void PublishEndMiniGame(bool isSuccess) => _onEndMiniGame?.Invoke(isSuccess);
+    private static Action<AnimalStruct,bool> _onEndMiniGame;
+    public static void SubscribeEndMiniGame(Action<AnimalStruct,bool> handler) => _onEndMiniGame += handler;
+    public static void UnsubscribeEndMiniGame(Action<AnimalStruct,bool> handler) => _onEndMiniGame -= handler;
+    public static void PublishEndMiniGame(AnimalStruct animal ,bool isSuccess) => _onEndMiniGame?.Invoke(animal ,isSuccess);
 
     
 

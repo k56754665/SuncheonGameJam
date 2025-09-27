@@ -5,7 +5,7 @@ public class EnvironmentLife : MonoBehaviour
     int health = 3;
     public GameObject protalImage1;
     public GameObject protalImage2;
-    public ParticleSystem particle;
+    public ParticleSystem[] particles;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +31,8 @@ public class EnvironmentLife : MonoBehaviour
         {
             Debug.Log("포탈 파괴효과 시작 후 미니 게임 시작");
         }
-        particle.Play();
+        foreach (var particle in particles)
+            particle.Play();
     }
 
 }

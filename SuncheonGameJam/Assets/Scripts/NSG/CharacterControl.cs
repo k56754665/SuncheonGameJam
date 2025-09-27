@@ -22,6 +22,7 @@ public class CharacterControl : MonoBehaviour
     private float defaultPosY = 0;
     private float timer = 0;
     private EnvironmentLife targetPortal = null;
+    Vector3 initPos;
 
     private bool _canControl = true;
     public bool CanControl
@@ -49,6 +50,7 @@ public class CharacterControl : MonoBehaviour
 
     void Start()
    {
+        initPos = transform.position;
         controller = GetComponent<CharacterController>();
         
         // 씬에서 메인 카메라를 찾아 저장합니다.
@@ -82,6 +84,16 @@ public class CharacterControl : MonoBehaviour
         {
             targetPortal = collider.transform.GetComponent<EnvironmentLife>();
             Debug.Log("포탈 접촉");//잡은 포탈 있으면 거리체크
+        }
+        if(LayerMask.LayerToName(collider.gameObject.layer) == "Safe")
+        {
+            controller.enabled = false;
+            transform.position = initPos + new Vector3(0,1,0); 
+            Debug.Log(initPos);
+            // 2. 🚨 누적된 중력 성분(dir.y)을 초기화하여 낙하를 방지
+            dir.y = 0f; 
+            controller.enabled = true;
+            Debug.Log("제자리 이동 완료: ");
         }
         
     }

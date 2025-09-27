@@ -9,7 +9,9 @@ public class ObjectMapping : MonoBehaviour
     public GameObject prefabToSpawn;    // 배치할 오브젝트 프리팹
     public GameObject prefabToSpawn2;   // 배치할 오브젝트 프리팹
     public GameObject prefabToSpawn3;   // 배치할 오브젝트 프리팹
-    public GameObject prefabToSpawn4; 
+    public GameObject prefabToSpawn4;
+    public GameObject prefabToSpawn5;
+    public GameObject prefabToSpawn6; 
     public GameObject portal;           // 순간이동 오브젝트
     public int spawnCount = 10;         // 배치할 최종 개수
     public float minSpawnDistance = 0.5f; // 오브젝트 간 최소 이격 거리
@@ -58,18 +60,24 @@ public class ObjectMapping : MonoBehaviour
             if (IsPositionValid(worldPosCandidate))
             {
                 GameObject newObj;
-                if (totalAttempts %4 == 0)
+                if (totalAttempts %6 == 0)
                 {
                     newObj = Instantiate(prefabToSpawn, worldPosCandidate, Quaternion.identity, spawnContainer);
-                }else if(totalAttempts %4 == 1)
+                }else if(totalAttempts %6 == 1)
                 {
                     newObj = Instantiate(prefabToSpawn2, worldPosCandidate, Quaternion.identity, spawnContainer);
-                }else if(totalAttempts %4 == 2)
+                }else if(totalAttempts %6 == 2)
                 {
                     newObj = Instantiate(prefabToSpawn3, worldPosCandidate, Quaternion.identity, spawnContainer);
-                }else if(totalAttempts %4 == 3)
+                }else if(totalAttempts %6 == 3)
                 {
                     newObj = Instantiate(prefabToSpawn4, worldPosCandidate, Quaternion.identity, spawnContainer);
+                }else if(totalAttempts %6 == 4)
+                {
+                    newObj = Instantiate(prefabToSpawn5, worldPosCandidate, Quaternion.identity, spawnContainer);
+                }else if(totalAttempts %6 == 5)
+                {
+                    newObj = Instantiate(prefabToSpawn6, worldPosCandidate, Quaternion.identity, spawnContainer);
                 }
                 placedCount++;
             }

@@ -33,6 +33,9 @@ public class FishingUIController : MonoBehaviour
     float elapsed;
     bool isRunning;
 
+    // 🔹 추가: 겹침 전이 감지용
+    bool _wasOverlap;
+
     /// <summary>
     /// 외부(매니저)에서 시작 호출: 타이머/게이지 초기화 후 러닝 시작.
     /// </summary>
@@ -41,6 +44,8 @@ public class FishingUIController : MonoBehaviour
         progress = 0f;
         elapsed  = 0f;
         isRunning = true;
+        _wasOverlap = false;
+        StopCatchLoopSFX(); // 안전 초기화
         UpdateUI();
     }
 
@@ -50,6 +55,7 @@ public class FishingUIController : MonoBehaviour
     public void StopImmediate()
     {
         isRunning = false;
+        StopCatchLoopSFX();
     }
     
     private void SetAnimal(AnimalStruct animal)
@@ -64,7 +70,9 @@ public class FishingUIController : MonoBehaviour
         {
             progress = 0f;
             elapsed  = 0f;
+            _wasOverlap = false;
             UpdateUI();
+            StopCatchLoopSFX();
         }
         EventBus.SubscribeStartMiniGame(SetAnimal);
     }
@@ -72,6 +80,7 @@ public class FishingUIController : MonoBehaviour
     private void OnDisable()
     {
         EventBus.UnsubscribeStartMiniGame(SetAnimal);
+        StopCatchLoopSFX();
     }
 
     private void Update()
@@ -91,6 +100,17 @@ public class FishingUIController : MonoBehaviour
         // 1D 구간 겹침: |Δx| <= halfH + halfT + padding
         bool overlap = Mathf.Abs(tx - hx) <= (halfH + halfT + extraPadding);
 
+        // 🔹 겹침 전이 감지 → 루프 SFX on/off
+        if (overlap && !_wasOverlap)
+        {
+            StartCatchLoopSFX();
+        }
+        else if (!overlap && _wasOverlap)
+        {
+            StopCatchLoopSFX();
+        }
+        _wasOverlap = overlap;
+
         float rate = overlap ? gainPerSec : -decayPerSec;
         progress = Mathf.Clamp01(progress + rate * Time.deltaTime);
 
@@ -100,6 +120,7 @@ public class FishingUIController : MonoBehaviour
         if (progress >= successThreshold)
         {
             isRunning = false;
+            StopCatchLoopSFX(); // 종료 시 정지
             EventBus.PublishEndMiniGame(currentAnimal,true);
             return;
         }
@@ -109,6 +130,7 @@ public class FishingUIController : MonoBehaviour
             (failWhenDrained && progress <= 0.0001f))
         {
             isRunning = false;
+            StopCatchLoopSFX(); // 종료 시 정지
             EventBus.PublishEndMiniGame(null,false);
             return;
         }
@@ -117,5 +139,18 @@ public class FishingUIController : MonoBehaviour
     private void UpdateUI()
     {
         if (progressFill) progressFill.fillAmount = progress;
+    }
+
+    // ---- 루프 SFX 헬퍼 ----
+    void StartCatchLoopSFX()
+    {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlaySFXLoop(SoundType.CatchingAnimal);
+    }
+
+    void StopCatchLoopSFX()
+    {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.StopSFXLoop();
     }
 }

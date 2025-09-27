@@ -23,7 +23,31 @@ public class CharacterControl : MonoBehaviour
     private float timer = 0;
     private EnvironmentLife targetPortal = null;
 
-   void Start()
+    private bool _canControl = true;
+    public bool CanControl
+    {
+        get => _canControl;
+        set
+        {
+            _canControl = value;
+            if (_canControl)
+            {
+                // 입력 켜기
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            else
+            {
+                // 입력 끄기
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                // 이동 멈추기
+                dir = Vector3.zero;
+            }
+        }
+    }
+
+    void Start()
    {
         controller = GetComponent<CharacterController>();
         
@@ -34,7 +58,9 @@ public class CharacterControl : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
    
-        defaultPosY = mainCamera.transform.localPosition.y; 
+        defaultPosY = mainCamera.transform.localPosition.y;
+
+        CanControl = true;
    }
 
    
@@ -68,6 +94,14 @@ public class CharacterControl : MonoBehaviour
     }
    void Update()
    {
+       if (Input.GetKeyDown(KeyCode.Escape))
+       {
+           CanControl = !CanControl;
+       }
+       
+       if (!CanControl)
+           return;
+       
     // 1. 마우스 입력으로 캐릭터 회전 처리
     float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
     

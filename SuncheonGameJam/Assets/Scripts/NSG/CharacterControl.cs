@@ -21,6 +21,7 @@ public class CharacterControl : MonoBehaviour
 
     private float defaultPosY = 0;
     private float timer = 0;
+    private EnvironmentLife targetPortal = null;
 
    void Start()
    {
@@ -45,13 +46,15 @@ public class CharacterControl : MonoBehaviour
    }
     private void OnTriggerEnter(Collider collider)
     {
+        Debug.Log("캐릭터와 충돌 " + collider.gameObject.name);
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Environment")
         {
-            EnvironmentMove eMove = collider.transform.parent.GetComponent<EnvironmentMove>();
+            EnvironmentMove eMove = collider.transform.GetComponent<EnvironmentMove>();
             eMove.MoveStart();
         }
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
         {
+            targetPortal = collider.transform.GetComponent<EnvironmentLife>();
             Debug.Log("포탈 접촉");//잡은 포탈 있으면 거리체크
         }
         
@@ -59,6 +62,7 @@ public class CharacterControl : MonoBehaviour
     private void OnTriggerExit(Collider collider) {
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
         {
+            targetPortal = null;
             Debug.Log("포탈 해제");
         }
     }
@@ -102,7 +106,24 @@ public class CharacterControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             dir.y = jumpPower;
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            Debug.Log("공격");
+        {
+            if(targetPortal != null)
+            {
+                Debug.Log("공격");
+                targetPortal.Damage();
+                // targetPortal.health -= 1;
+                // if(targetPortal.health <= 0)
+                // {
+                //     Debug.Log("미니게임 시작");
+                //     targetPortal = null;
+                // }
+                
+            }
+            else
+            {
+                Debug.Log("근처에 포탈이 없습니다");
+            }
+        }
       }
       
       // 5. 캐릭터 이동

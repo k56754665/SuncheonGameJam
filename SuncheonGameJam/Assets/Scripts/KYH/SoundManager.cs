@@ -74,7 +74,7 @@ public class SoundManager : Singleton<SoundManager> {
         if(isSuccess)
             Play(SoundType.GetAnimal);
         else
-            Play(SoundType.CatchingAnimal);
+            Play(SoundType.FailGet);
     }
 
     // -------------------
@@ -172,5 +172,6 @@ public enum SoundType {
     SeaWalk,
     GetAnimal,
     CatchingAnimal,
+    FailGet,
     BGM_Test
 }

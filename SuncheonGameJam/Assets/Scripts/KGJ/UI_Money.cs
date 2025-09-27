@@ -32,7 +32,7 @@ public class UI_Money : MonoBehaviour
     
     private void UpdateMoneyText(float amount)
     {
-        moneyText.text = $"보유금 : {MoneyManager.Instance.CurrentMoney:N0}원";
+        moneyText.text = $"{MoneyManager.Instance.CurrentMoney / 10000}만원";
     }
 
     private int GetGiftCount(float amount)

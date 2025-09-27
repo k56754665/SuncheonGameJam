@@ -16,6 +16,9 @@ public class MiniGameManager : Singleton<MiniGameManager>
     private FishingUIController fishingCtrl;
     private MiniGameResult resultCtrl;
     private AnimalPoolData animalPoolData;
+    private CharacterControl characterControl;
+    
+    public AnimalPoolData AnimalPoolData => animalPoolData;
     [SerializeField] private Image targetImage;
     
     [SerializeField] private AnimalStruct currentAnimal;
@@ -29,6 +32,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
         fishingCtrl = FindAnyObjectByType<FishingUIController>();
         resultCtrl = FindAnyObjectByType<MiniGameResult>();
         animalPoolData = FindAnyObjectByType<AnimalPoolData>();
+        
     }
 
     private void OnEnable()
@@ -51,8 +55,9 @@ public class MiniGameManager : Singleton<MiniGameManager>
         if (FailCanvas) FailCanvas.SetActive(false);
     }
 
-    public void OnStartMiniGame(AnimalStruct animal)
+    public void OnStartMiniGame()
     {
+        AnimalStruct animal = animalPoolData.PickAnimal();
         if (!MiniGameCanvas) return;
         MiniGameCanvas.SetActive(true);
 
@@ -73,7 +78,8 @@ public class MiniGameManager : Singleton<MiniGameManager>
             fishingCtrl.enabled = true;
             fishingCtrl.Begin(); // 진행도/타이머 초기화 (FishingUIController에 이미 구현됨)
         }
-        
+        characterControl = FindAnyObjectByType<CharacterControl>();
+        characterControl.CanControl = false;
         EventBus.PublishStartMiniGame(animal);
     }
 
@@ -91,6 +97,8 @@ public class MiniGameManager : Singleton<MiniGameManager>
             if (SuccessCanvas) SuccessCanvas.SetActive(true);
             if (FailCanvas) FailCanvas.SetActive(false);
             if (resultCtrl) resultCtrl.SetSuccess(animal);
+            MoneyManager.Instance.AddMoney(animal.Bounties[(int)animal.monsterLevel]);
+            BookManager.Instance.Unlock(animal.id, animal.monsterLevel);
             
         }
         else
@@ -107,17 +115,11 @@ public class MiniGameManager : Singleton<MiniGameManager>
     }
     
     
-    public void TestStartMiniGame()
-    {
-        animalPoolData.SetMap(EnvironmentType.Reed, 0);
-        AnimalStruct animal = animalPoolData.PickAnimal();
-        OnStartMiniGame(animal);
-    }
-    
-    
     public void OffResultCanvas()
     {
         if (SuccessCanvas) SuccessCanvas.SetActive(false);
         if (FailCanvas) FailCanvas.SetActive(false);
+        characterControl = FindAnyObjectByType<CharacterControl>();
+        characterControl.CanControl = true;
     }
 }

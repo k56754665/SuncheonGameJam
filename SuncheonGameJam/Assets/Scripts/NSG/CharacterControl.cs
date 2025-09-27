@@ -105,11 +105,6 @@ public class CharacterControl : MonoBehaviour
     }
    void Update()
    {
-       if (Input.GetKeyDown(KeyCode.Escape))
-       {
-           CanControl = !CanControl;
-       }
-       
        if (!CanControl)
            return;
        
@@ -156,13 +151,11 @@ public class CharacterControl : MonoBehaviour
             {
                 Debug.Log("공격");
                 targetPortal.Damage();
-          
-                // targetPortal.health -= 1;
-                // if(targetPortal.health <= 0)
-                // {
-                //     Debug.Log("미니게임 시작");
-                //     targetPortal = null;
-                // }
+                if(targetPortal.health <= 0)
+                {
+                     MiniGameManager.Instance.OnStartMiniGame();
+                     targetPortal = null;
+                }
                 
             }
             else

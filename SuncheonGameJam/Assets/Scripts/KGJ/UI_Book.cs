@@ -68,7 +68,7 @@ public class UI_Book : MonoBehaviour
         title.text = isUnlocked ? animal.animalName : "???";
         description.text = isUnlocked ? animal.animalDesription : "새로운 생물을 채집해 도감을 채워보세요!";
         image.sprite = animal.animalImage;
-        image.color = isUnlocked ? Color.white : Color.black;
+        image.enabled = isUnlocked;
     }
 
     /// <summary>

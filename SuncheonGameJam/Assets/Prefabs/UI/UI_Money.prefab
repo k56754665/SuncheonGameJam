@@ -143,15 +143,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: +10000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 832958d630178f74a84733a2ccd1eda5, type: 2}
+  m_sharedMaterial: {fileID: 4957058790994155984, guid: 832958d630178f74a84733a2ccd1eda5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 7573073
-  m_fontColor: {r: 0.31768423, g: 0.5566038, b: 0.45132667, a: 0}
+    rgba: 5079129
+  m_fontColor: {r: 0.34901962, g: 0.5019608, b: 0.3019608, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -246,8 +246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5, y: 2.5}
-  m_SizeDelta: {x: -10, y: -5}
+  m_AnchoredPosition: {x: -5, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6615713813465464679
 CanvasRenderer:
@@ -279,15 +279,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "0\uB9CC\uC6D0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a17698b7d19ebc4eb4edcfc1335b788, type: 2}
-  m_sharedMaterial: {fileID: -563747824379024583, guid: 1a17698b7d19ebc4eb4edcfc1335b788, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 832958d630178f74a84733a2ccd1eda5, type: 2}
+  m_sharedMaterial: {fileID: 4957058790994155984, guid: 832958d630178f74a84733a2ccd1eda5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4282741583
+  m_fontColor: {r: 0.30980393, g: 0.45098042, b: 0.27058825, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -304,12 +304,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 40
+  m_fontSizeMin: 30
+  m_fontSizeMax: 50
   m_fontStyle: 1
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512

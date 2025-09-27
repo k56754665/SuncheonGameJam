@@ -13,7 +13,6 @@ public class CharacterControl : MonoBehaviour
     public float rotationSpeed = 3.0f; // 마우스 감도
     public float verticalLookLimit = 80.0f; 
     private float rotationX = 0;
-
     private Camera mainCamera;
 
     public float walkingBobbingSpeed = 14f; // 걷기 속도에 따른 흔들림 빈도
@@ -157,6 +156,7 @@ public class CharacterControl : MonoBehaviour
             {
                 Debug.Log("공격");
                 targetPortal.Damage();
+          
                 // targetPortal.health -= 1;
                 // if(targetPortal.health <= 0)
                 // {

@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.41006586, g: 0.5042195, b: 0.9150943, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.1
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.066037714, g: 0.066037714, b: 0.066037714, a: 1}
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 1f7034c0865d54b72bda0429a721fdae, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ed8ac359a29fd47fb8f4d28cf9d48a2c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -147,7 +147,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -594,7 +594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7914298178885426056, guid: 3fd35f32c79286a48948dbbb1863f2a9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3300
+      value: 5600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -692,7 +692,7 @@ Terrain:
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 45a5eec6002674ad586e8b7251c37004, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 4fc0458e71c8842798e91f5ff1504355, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -1199,20 +1199,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893398485}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 013ac6d1d8f7c4c6f9b83ded4d182ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTerrain: {fileID: 1082057732}
-  prefabToSpawn: {fileID: 9113108973438869335, guid: 715d5436953004d3cb2910d2ea4a1cb6, type: 3}
-  prefabToSpawn2: {fileID: 9113108973438869335, guid: ab24f30af7f544d26bcdd2cdcec60817, type: 3}
-  prefabToSpawn3: {fileID: 3593062756287578344, guid: c7ae85c84082d41aaacb57d62ad5a1c0, type: 3}
-  prefabToSpawn4: {fileID: 1443573998016906375, guid: bb4f9efe40f6f48ffb606ba625897824, type: 3}
-  prefabToSpawn5: {fileID: 9113108973438869335, guid: ccb03311364ec4db580efbfe2e48e137, type: 3}
-  prefabToSpawn6: {fileID: 9113108973438869335, guid: d31f9314d07d34ad68eb52b6e2e78751, type: 3}
-  portal: {fileID: 703713497792487187, guid: b1abd04c12be74de59d7128976feeb38, type: 3}
-  spawnCount: 1000
+  prefabToSpawn: {fileID: 429806509705693966, guid: 13398343ae01e4c02912bd2acd0da215, type: 3}
+  prefabToSpawn2: {fileID: 429806509705693966, guid: 357e488178c4840afba4f8e330d781d0, type: 3}
+  prefabToSpawn3: {fileID: 429806509705693966, guid: 9578af6064fd54f5f906d422316e0f45, type: 3}
+  prefabToSpawn4: {fileID: 429806509705693966, guid: 776caf505d26947a2905c13b846d70cd, type: 3}
+  prefabToSpawn5: {fileID: 429806509705693966, guid: f2cdd333f57cb406fa91f5a828506f69, type: 3}
+  prefabToSpawn6: {fileID: 429806509705693966, guid: f2cdd333f57cb406fa91f5a828506f69, type: 3}
+  portal: {fileID: 703713497792487187, guid: 104401ef183684d158570cd8f0c7747f, type: 3}
+  spawnCount: 700
   minSpawnDistance: 0.2
   maxAttemptsPerObject: 50
   portalSpawnCount: 20
@@ -1226,6 +1226,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2912837332074728398, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4851678479571874368, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1281,6 +1285,34 @@ PrefabInstance:
     - target: {fileID: 5887256581540848993, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792931218037242390, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: m_Antialiasing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792931218037242390, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792931218037242390, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: m_TaaSettings.m_ContrastAdaptiveSharpening
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161413219451568834, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: particles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161413219451568834, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: 'particles.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161413219451568834, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: 'particles.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9161413219451568834, guid: 0168f74a0be914983aacdc7fb88d0577, type: 3}
+      propertyPath: 'particles.Array.data[2]'
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

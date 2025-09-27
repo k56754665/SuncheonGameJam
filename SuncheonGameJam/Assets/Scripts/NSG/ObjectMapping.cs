@@ -75,9 +75,23 @@ public class ObjectMapping : MonoBehaviour
                 }else if(totalAttempts %6 == 4)
                 {
                     newObj = Instantiate(prefabToSpawn5, worldPosCandidate, Quaternion.identity, spawnContainer);
+                    float normalizedX = (worldPosCandidate.x - terrainPosition.x) / terrainData.size.x;
+                    float normalizedZ = (worldPosCandidate.z - terrainPosition.z) / terrainData.size.z;
+                    Vector3 terrainNormal = terrainData.GetInterpolatedNormal(normalizedX, normalizedZ);
+
+                    // 노멀 방향에 맞춰 회전
+                    Quaternion alignRotation = Quaternion.FromToRotation(Vector3.up, terrainNormal);
+                    newObj.transform.rotation = alignRotation;
                 }else if(totalAttempts %6 == 5)
                 {
                     newObj = Instantiate(prefabToSpawn6, worldPosCandidate, Quaternion.identity, spawnContainer);
+                    float normalizedX = (worldPosCandidate.x - terrainPosition.x) / terrainData.size.x;
+                    float normalizedZ = (worldPosCandidate.z - terrainPosition.z) / terrainData.size.z;
+                    Vector3 terrainNormal = terrainData.GetInterpolatedNormal(normalizedX, normalizedZ);
+
+                    // 노멀 방향에 맞춰 회전
+                    Quaternion alignRotation = Quaternion.FromToRotation(Vector3.up, terrainNormal);
+                    newObj.transform.rotation = alignRotation;
                 }
                 placedCount++;
             }

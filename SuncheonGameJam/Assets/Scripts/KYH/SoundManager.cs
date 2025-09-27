@@ -56,6 +56,8 @@ public class SoundManager : Singleton<SoundManager> {
             _clipMap[e.type] = e.clip;
         }
 
+        // 테스트용 BGM 실행
+        //PlayBGM(SoundType.BGM_Test);
     }
     
     #region Subscribe

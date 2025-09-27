@@ -1,58 +1,53 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using System;
 
 public class UI_GiftMoney : MonoBehaviour
 {
-    [SerializeField] private Image image; // 돈 이미지 (필수: CanvasRenderer 있어야 DOFade 가능)
+    [SerializeField] private Image image;
+
+    // 애니메이션 끝났을 때 호출되는 콜백
+    public Action OnEffectComplete;
 
     public void PlayEffect(Vector3 uiTarget, float spreadRadius = 100f, float spreadTime = 0.3f, float waitTime = 0.1f, float flyTime = 0.8f)
     {
         RectTransform rt = GetComponent<RectTransform>();
 
-        // --- 생성 시 살짝 랜덤 회전 ---
-        rt.localRotation = Quaternion.Euler(0, 0, Random.Range(-25f, 25f));
+        rt.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-25f, 25f));
 
-        // --- 퍼질 위치 계산 ---
-        Vector2 dir = Random.insideUnitCircle.normalized;
+        Vector2 dir = UnityEngine.Random.insideUnitCircle.normalized;
         Vector2 spreadPos = rt.anchoredPosition + dir * spreadRadius;
 
         Sequence seq = DOTween.Sequence();
 
-        // 1. 중앙 → 퍼진 위치
+        // 1. 퍼지기
         seq.Append(rt.DOAnchorPos(spreadPos, spreadTime).SetEase(Ease.OutQuad));
-
-        // 2. 퍼진 자리에서 잠시 대기
+        // 2. 대기
         seq.AppendInterval(waitTime);
 
-        // 3. 퍼진 자리에서 UI 위치로 곡선 이동 + 축소 + 페이드아웃
+        // 3. 타겟으로 이동 (곡선 + 축소 + 페이드)
         seq.AppendCallback(() =>
         {
-            Vector3 worldStart = rt.position;    // 퍼진 후 실제 위치
+            Vector3 worldStart = rt.position;
             Vector3 worldTarget = uiTarget;
             Vector3 control = (worldStart + worldTarget) / 2f + Vector3.up * 200f;
 
             Vector3[] path = { worldStart, control, worldTarget };
 
-            // 경로 이동
-            var pathTween = rt.DOPath(path, flyTime, PathType.CatmullRom)
-                .SetEase(Ease.InQuad)
-                .SetOptions(false);
-
-            // 크기 축소
-            var scaleTween = rt.DOScale(Vector3.zero, flyTime)
-                .SetEase(Ease.InQuad);
-
-            // 알파 페이드아웃 (Image 필요)
-            var fadeTween = image.DOFade(0f, flyTime)
-                .SetEase(Ease.InQuad);
+            var pathTween = rt.DOPath(path, flyTime, PathType.CatmullRom).SetEase(Ease.InQuad).SetOptions(false);
+            var scaleTween = rt.DOScale(Vector3.zero, flyTime).SetEase(Ease.InQuad);
+            var fadeTween = image.DOFade(0f, flyTime).SetEase(Ease.InQuad);
 
             DOTween.Sequence()
                 .Join(pathTween)
                 .Join(scaleTween)
                 .Join(fadeTween)
-                .OnComplete(() => Destroy(gameObject));
+                .OnComplete(() =>
+                {
+                    OnEffectComplete?.Invoke(); // 콜백 실행
+                    Destroy(gameObject);
+                });
         });
     }
 }

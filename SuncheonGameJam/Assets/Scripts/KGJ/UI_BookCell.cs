@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class UI_BookCell : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Image image;
-    [SerializeField] private Image frame;
     [SerializeField] private TMP_Text rankText;
 
     private AnimalStruct _data;

@@ -8,12 +8,6 @@ public class InertiaHandleUI : MonoBehaviour
     public RectTransform track;
     public RectTransform handle;
 
-    [Header("Input")]
-    [Tooltip("체크 시 마우스 좌/우 버튼으로 제어, 해제 시 Horizontal 축 사용")]
-    public bool useMouseButtons = true;
-    [Tooltip("왼쪽 버튼을 오른쪽으로, 오른쪽 버튼을 왼쪽으로 바꾸고 싶을 때 체크")]
-    public bool invertMouseMapping = false;
-
     [Header("Motion")]
     [Tooltip("질량: 클수록 같은 힘에 덜 가속.")]
     public float mass = 1.2f;
@@ -59,7 +53,7 @@ public class InertiaHandleUI : MonoBehaviour
         if (!track || !handle) return;
         if (halfRange <= 0f) ComputeRange();
 
-        float axis = ReadAxis();
+        float axis = Input.GetAxisRaw("Horizontal"); // -1~1
         accumulator += Time.deltaTime;
 
         while (accumulator >= simDt)
@@ -69,41 +63,6 @@ public class InertiaHandleUI : MonoBehaviour
         }
 
         Apply();
-    }
-
-    /// <summary>
-    /// 입력을 -1..+1로 환산.
-    /// useMouseButtons=true: 마우스 좌/우 버튼을 각각 -1/+1로 매핑(둘 다 누르면 0).
-    /// useMouseButtons=false: 기존 Horizontal 축 사용.
-    /// </summary>
-    float ReadAxis()
-    {
-        if (useMouseButtons)
-        {
-            bool left  = Input.GetMouseButton(0); // LMB
-            bool right = Input.GetMouseButton(1); // RMB
-
-            if (left && right) return 0f;
-
-            float axis = 0f;
-            // 기본: 왼쪽=-1, 오른쪽=+1
-            if (!invertMouseMapping)
-            {
-                if (left)  axis -= 1f;
-                if (right) axis += 1f;
-            }
-            else
-            {
-                // 반전: 왼쪽=+1, 오른쪽=-1
-                if (left)  axis += 1f;
-                if (right) axis -= 1f;
-            }
-            return axis;
-        }
-        else
-        {
-            return Input.GetAxisRaw("Horizontal");
-        }
     }
 
     void Step(float axis, float dt)

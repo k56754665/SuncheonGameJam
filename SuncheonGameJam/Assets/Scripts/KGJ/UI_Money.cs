@@ -1,13 +1,38 @@
+using TMPro;
 using UnityEngine;
 
 public class UI_Money : MonoBehaviour
 {
     [SerializeField] private Transform moneyRoot;
+    [SerializeField] private TMP_Text moneyText;
+    
     private GameObject _giftMoneyPrefab;
-
+    private MoneyManager _moneyManager;
+    private MoneyPopupText _moneyPopupText;
+    
     private void Awake()
     {
         _giftMoneyPrefab = Resources.Load<GameObject>("UI/UI_GiftMoney");
+    }
+
+    private void Start()
+    {
+        _moneyPopupText = GetComponentInChildren<MoneyPopupText>();
+        _moneyManager = MoneyManager.Instance;
+        _moneyManager.OnMoneyAdded += MakeMoney;
+        _moneyManager.OnMoneyAdded += ShowMoneyPopup;
+        _moneyManager.OnMoneyRemoved += UpdateMoneyText;
+        UpdateMoneyText(_moneyManager.CurrentMoney);
+    }
+
+    private void ShowMoneyPopup(float amount)
+    {
+        _moneyPopupText.ShowPopup(amount);
+    }
+    
+    private void UpdateMoneyText(float amount)
+    {
+        moneyText.text = $"보유금 : {MoneyManager.Instance.CurrentMoney:N0}원";
     }
 
     private int GetGiftCount(float amount)
@@ -18,32 +43,37 @@ public class UI_Money : MonoBehaviour
         return 9;                          // 그 이상
     }
 
-    public void MakeMoney(float amount)
+    private void MakeMoney(float amount)
     {
         int count = GetGiftCount(amount);
+        bool executed = false; // 한 번만 실행되도록 플래그
 
         for (int i = 0; i < count; i++)
         {
             var go = Instantiate(_giftMoneyPrefab, transform);
             var rt = go.GetComponent<RectTransform>();
-            rt.anchoredPosition = Vector2.zero; // 중앙에서 시작
+            rt.anchoredPosition = Vector2.zero;
 
             var giftMoney = go.GetComponent<UI_GiftMoney>();
 
-            // 이펙트 실행
+            giftMoney.OnEffectComplete += () =>
+            {
+                if (executed) return; // 이미 실행했다면 무시
+                executed = true;
+
+                //ShowMoneyPopup(amount);
+                UpdateMoneyText(amount);
+            };
+
             giftMoney.PlayEffect(moneyRoot.position);
         }
     }
 
-    // 디버그용 버튼
-    private void OnGUI()
+    
+    private void OnDestroy()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 200, 200));
-
-        if (GUILayout.Button("Make 100,000")) MakeMoney(100000);
-        if (GUILayout.Button("Make 1,000,000")) MakeMoney(1000000);
-        if (GUILayout.Button("Make 10,000,000")) MakeMoney(10000000);
-
-        GUILayout.EndArea();
+        _moneyManager.OnMoneyAdded -= MakeMoney;
+        _moneyManager.OnMoneyAdded -= ShowMoneyPopup;
+        _moneyManager.OnMoneyRemoved -= UpdateMoneyText;
     }
 }

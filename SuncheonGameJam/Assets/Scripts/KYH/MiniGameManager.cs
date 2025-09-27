@@ -97,6 +97,8 @@ public class MiniGameManager : Singleton<MiniGameManager>
             if (SuccessCanvas) SuccessCanvas.SetActive(true);
             if (FailCanvas) FailCanvas.SetActive(false);
             if (resultCtrl) resultCtrl.SetSuccess(animal);
+            MoneyManager.Instance.AddMoney(animal.Bounties[(int)animal.monsterLevel]);
+            BookManager.Instance.Unlock(animal.id, animal.monsterLevel);
             
         }
         else

@@ -11,7 +11,7 @@ public class UI_Book : MonoBehaviour
     [SerializeField] private Transform contentRoot;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
-    [SerializeField] private UI_BookCell detailPanel; // 오른쪽 상세 정보 패널
+    [SerializeField] private Image image;
     
     private GameObject _bookCellPrefab;
     private ScrollRect _scrollRect;
@@ -64,7 +64,8 @@ public class UI_Book : MonoBehaviour
         bool isUnlocked = BookManager.Instance.IsUnlocked(animal.id);
         title.text = isUnlocked ? animal.animalName : "???";
         description.text = isUnlocked ? animal.animalDesription : "";
-        detailPanel.SetBookData(animal);
+        image.sprite = animal.animalImage;
+        image.color = isUnlocked ? Color.white : Color.clear;
     }
 
     /// <summary>

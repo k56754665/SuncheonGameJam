@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d7915b72df9411c84f39742db2b3d8, type: 3}
   m_Name: "\uBC18\uB527\uBD88\uC774"
   m_EditorClassIdentifier: 
-  id: 95ac6191cad241ef87c6c540358beeec
+  id: 21
   animalName: "\uBC18\uB527\uBD88\uC774"
-  animalImage: {fileID: 0}
+  animalImage: {fileID: 21300000, guid: e2e6ae7f07191e64cb0c9309c4dd2035, type: 3}
   monsterLevel: 0
   environment: 0
   Bounties: 000000000000000000000000000000000000000000000000

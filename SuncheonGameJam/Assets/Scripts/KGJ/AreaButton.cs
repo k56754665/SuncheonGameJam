@@ -1,20 +1,59 @@
-using NUnit;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AreaButton : MonoBehaviour
 {
+    [SerializeField] private int id;
     [SerializeField] private EnvironmentType _environmentType;
+    [SerializeField] private Sprite lockedSprite;
+    [SerializeField] private Sprite unlockedSprite;
     private Button _button;
     [SerializeField, Range(1, 3)]
     private int _stage = 1;
     private SceneManagerSystem _scene = new();
-
+    private MapManager _mapManager;
+    
     private void Start()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(LoadAreaScene);
+        _button.onClick.AddListener(HandleClick);
+        _mapManager = MapManager.Instance;
+        _mapManager.OnAreaUnlockedEvent += HandleUnlocked;
+        UpdateButtonSprite();
     }
+    
+    private void UpdateButtonSprite()
+    {
+        if (_mapManager.IsAreaUnlocked(id))
+        {
+            _button.image.sprite = unlockedSprite;
+        }
+        else
+        {
+            _button.image.sprite = lockedSprite;
+        }
+    }
+
+    private void HandleUnlocked(int unlockedId)
+    {
+        if (id == unlockedId)
+        {
+            _button.image.sprite = unlockedSprite;
+        }
+    }
+
+    private void HandleClick()
+    {
+        if (_mapManager.IsAreaUnlocked(id))
+        {
+            LoadAreaScene();
+        }
+        else
+        {
+            _mapManager.ShowAreaShop(id);
+        }
+    }
+    
 
     private void LoadAreaScene()
     {
@@ -41,8 +80,12 @@ public class AreaButton : MonoBehaviour
                 areaName = "ReedMap";
                 break;
         }
-        
 
         return areaName;
+    }
+
+    private void OnDestroy()
+    {
+        _mapManager.OnAreaUnlockedEvent -= HandleUnlocked;
     }
 }

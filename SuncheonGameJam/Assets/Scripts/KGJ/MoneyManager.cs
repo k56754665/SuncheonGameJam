@@ -16,7 +16,7 @@ public class MoneyManager : Singleton<MoneyManager>
     /// 쓴 돈을 파라미터로 넘기는 액션
     /// </summary>
     public event Action<float> OnMoneyRemoved;
-    
+
     public bool IsGoal()
     {
         return CurrentMoney >= GoalMoney;

@@ -80,6 +80,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
         }
         characterControl = FindAnyObjectByType<CharacterControl>();
         characterControl.CanControl = false;
+        SoundManager.Instance.StopBGM();
         EventBus.PublishStartMiniGame(animal);
     }
 
@@ -97,6 +98,8 @@ public class MiniGameManager : Singleton<MiniGameManager>
             if (SuccessCanvas) SuccessCanvas.SetActive(true);
             if (FailCanvas) FailCanvas.SetActive(false);
             if (resultCtrl) resultCtrl.SetSuccess(animal);
+            MoneyManager.Instance.AddMoney(animal.Bounties[(int)animal.monsterLevel]);
+            BookManager.Instance.Unlock(animal.id, animal.monsterLevel);
             
         }
         else
@@ -104,6 +107,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
             if (SuccessCanvas) SuccessCanvas.SetActive(false);
             if (FailCanvas) FailCanvas.SetActive(true);
         }
+        SoundManager.Instance.PlayBGM(SoundType.BGM_Test, true);
     }
     
     private float CalLevel(float difficulty, MonsterLevelType monsterLevel)

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class BookManager : MonoBehaviour
+public class BookManager : Singleton<BookManager>
 {
     private const string RESOURCES_FOLDER = "AnimalSO";
-    public static BookManager Instance { get; private set; }
 
     private List<AnimalStruct> _allEntries = new();
     private HashSet<string> _unlockedIds = new(); // int → string
@@ -13,15 +11,9 @@ public class BookManager : MonoBehaviour
 
     private const string SaveKey = "BookUnlockProgress";
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
         
         LoadAllData();
         LoadProgress();
@@ -29,6 +21,11 @@ public class BookManager : MonoBehaviour
 
     public bool IsUnlocked(string id) => _unlockedIds.Contains(id);
 
+    /// <summary>
+    /// 미니게임 성공시 잡은 개체의 id와 등급을 넣어주면 해금됩니다.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="level"></param>
     public void Unlock(string id, MonsterLevelType level)
     {
         bool changed = _unlockedIds.Add(id);
@@ -42,6 +39,11 @@ public class BookManager : MonoBehaviour
         if (changed) SaveProgress();
     }
 
+    /// <summary>
+    /// 해금된 개체의 id를 넣으면 최고 등급 기록을 반환합니다.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public MonsterLevelType GetHighestLevel(string id)
     {
         if (_highestLevels.TryGetValue(id, out var level))

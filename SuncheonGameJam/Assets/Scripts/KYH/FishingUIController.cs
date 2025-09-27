@@ -87,7 +87,7 @@ public class FishingUIController : MonoBehaviour
         if (progress >= successThreshold)
         {
             isRunning = false;
-            EventBus.PublishEndMiniGame(true);
+            EventBus.PublishEndMiniGame(null,true);
             return;
         }
 
@@ -96,7 +96,7 @@ public class FishingUIController : MonoBehaviour
             (failWhenDrained && progress <= 0.0001f))
         {
             isRunning = false;
-            EventBus.PublishEndMiniGame(false);
+            EventBus.PublishEndMiniGame(null,false);
             return;
         }
     }

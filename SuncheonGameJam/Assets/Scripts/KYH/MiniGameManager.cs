@@ -1,16 +1,29 @@
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class MiniGameManager : Singleton<MiniGameManager>
 {
     [FormerlySerializedAs("fishingUIRoot")]
     [Header("Fishing UI Root")]
     [SerializeField] private GameObject MiniGameCanvas;
+    [SerializeField] private GameObject SuccessCanvas;
+    [SerializeField] private GameObject FailCanvas;
 
     [Header("Fishing Components")]
-    [SerializeField] private InertiaHandleUI handleCtrl;
-    [SerializeField] private TargetNoiseMoverUI targetCtrl;
-    [SerializeField] private FishingUIController fishingCtrl;
+    private InertiaHandleUI handleCtrl;
+    private TargetNoiseMoverUI targetCtrl;
+    private FishingUIController fishingCtrl;
+    [SerializeField] private Image targetImage;
+    
+    
+    protected override void Awake()
+    {
+        base.Awake();
+        handleCtrl = FindAnyObjectByType<InertiaHandleUI>();
+        targetCtrl = FindAnyObjectByType<TargetNoiseMoverUI>();
+        fishingCtrl = FindAnyObjectByType<FishingUIController>();
+    }
 
     private void OnEnable()
     {
@@ -30,15 +43,27 @@ public class MiniGameManager : Singleton<MiniGameManager>
         if (handleCtrl) handleCtrl.enabled = false;
         if (targetCtrl) targetCtrl.enabled = false;
         if (fishingCtrl) fishingCtrl.enabled = false;
+        if (SuccessCanvas) SuccessCanvas.SetActive(false);
+        if (FailCanvas) FailCanvas.SetActive(false);
     }
 
-    public void OnStartMiniGame()
+    public void OnStartMiniGame(AnimalStruct animal)
     {
         if (!MiniGameCanvas) return;
         MiniGameCanvas.SetActive(true);
 
         if (handleCtrl) handleCtrl.enabled = true;
-        if (targetCtrl) targetCtrl.enabled = true;
+        if (targetCtrl)
+        {
+            targetCtrl.enabled = true;
+            float level = 1f;
+            if (animal != null)
+                level = CalLevel(animal.difficulty, animal.monsterLevel);
+            targetCtrl.SetLevel(level);
+        }
+
+        if (targetImage && animal != null)
+            targetImage.sprite = animal.animalImage;
         if (fishingCtrl)
         {
             fishingCtrl.enabled = true;
@@ -46,7 +71,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
         }
     }
 
-    public void OnEndMiniGame(bool success)
+    public void OnEndMiniGame(AnimalStruct animal, bool success)
     {
         // TODO: 성공/실패 보상 처리
 
@@ -55,5 +80,34 @@ public class MiniGameManager : Singleton<MiniGameManager>
         if (handleCtrl) handleCtrl.enabled = false;
         if (targetCtrl) targetCtrl.enabled = false;
         if (fishingCtrl) fishingCtrl.enabled = false;
+        if (success)
+        {
+            if (SuccessCanvas) SuccessCanvas.SetActive(true);
+            if (FailCanvas) FailCanvas.SetActive(false);
+        }
+        else
+        {
+            if (SuccessCanvas) SuccessCanvas.SetActive(false);
+            if (FailCanvas) FailCanvas.SetActive(true);
+        }
+    }
+    
+    private float CalLevel(float difficulty, MonsterLevelType monsterLevel)
+    {
+        int level = (int)monsterLevel;
+        return difficulty + (level - 1) * 0.5f;
+    }
+    
+    
+    public void TestStartMiniGame()
+    {
+        OnStartMiniGame(null);
+    }
+    
+    
+    public void OffResultCanvas()
+    {
+        if (SuccessCanvas) SuccessCanvas.SetActive(false);
+        if (FailCanvas) FailCanvas.SetActive(false);
     }
 }

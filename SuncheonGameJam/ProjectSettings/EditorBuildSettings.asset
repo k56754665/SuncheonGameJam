@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/ReedMap.unity
     guid: ee710ba017728470eb5e75c6648c8fc6
   - enabled: 1
-    path: Assets/Scenes/SeaMap.unity
-    guid: 7ad6ddc26ed6247e6a9d629b26829ee6
+    path: Assets/Scenes/EndingScene.unity
+    guid: 3ba007917d81a734dab6e02022a90ce3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

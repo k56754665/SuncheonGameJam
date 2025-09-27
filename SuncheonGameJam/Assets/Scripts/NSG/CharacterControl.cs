@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class CharacterControl : MonoBehaviour
     private float timer = 0;
     private EnvironmentLife targetPortal = null;
     Vector3 initPos;
+    private int sceneIndex;//0 갈대, 1 바다
 
     private bool _canControl = true;
     public bool CanControl
@@ -62,6 +64,27 @@ public class CharacterControl : MonoBehaviour
         defaultPosY = mainCamera.transform.localPosition.y;
 
         CanControl = true;
+        Debug.Log(SceneManager.GetActiveScene().name);
+        if( SceneManager.GetActiveScene().name == "ReedMap")
+        {
+            sceneIndex = 0;
+        }else if( SceneManager.GetActiveScene().name == "SeaMap")
+        {
+            sceneIndex = 1;
+        }
+        if(sceneIndex == 0)
+        {
+            SoundManager.Instance.PlayBGM(SoundType.BGM_Reed, true);
+            //갈대 노래 재생
+        }else
+        {
+            SoundManager.Instance.PlayBGM(SoundType.BGM_Sea, true);
+            //바다 노래 재생
+        }
+   }
+   void OnDestroy()
+   {
+        SoundManager.Instance.StopBGM();
    }
 
    
@@ -171,7 +194,19 @@ public class CharacterControl : MonoBehaviour
       // 1. 캐릭터가 움직이고 있는지 확인 (예: 키보드 입력이 있을 때)
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f)
         {
+            
             if (!controller.isGrounded) return;
+            if(SoundManager.Instance.SFXLOOPINGISPLAYING() == false)
+            {
+                if(sceneIndex == 0)
+                {
+                    SoundManager.Instance.PlaySFXLoop(SoundType.ReedWalk);
+                }else
+                {
+                    SoundManager.Instance.PlaySFXLoop(SoundType.SeaWalk);
+                }
+               
+            }
             // 2. 타이머를 증가시킵니다.
             timer += Time.deltaTime * walkingBobbingSpeed;
 
@@ -187,6 +222,10 @@ public class CharacterControl : MonoBehaviour
         }
         else
         {
+            if(SoundManager.Instance.SFXLOOPINGISPLAYING() == true)
+            {
+                SoundManager.Instance.StopSFXLoop();           
+            }
             // 멈춰있을 때는 카메라를 기본 위치로 부드럽게 복귀시킵니다.
             timer = 0;
             mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, 

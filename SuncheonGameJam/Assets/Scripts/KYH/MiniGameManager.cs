@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -107,7 +108,14 @@ public class MiniGameManager : Singleton<MiniGameManager>
             if (SuccessCanvas) SuccessCanvas.SetActive(false);
             if (FailCanvas) FailCanvas.SetActive(true);
         }
-        SoundManager.Instance.PlayBGM(SoundType.BGM_Test, true);
+        if (SceneManager.GetActiveScene().name == "ReedMap")
+        {
+            SoundManager.Instance.PlayBGM(SoundType.BGM_Reed, true);
+        }else
+        {
+            SoundManager.Instance.PlayBGM(SoundType.BGM_Sea, true);
+        }
+        
     }
     
     private float CalLevel(float difficulty, MonsterLevelType monsterLevel)

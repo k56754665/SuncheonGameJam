@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 public enum MonsterLevelType
 {
@@ -29,12 +28,5 @@ public class AnimalStruct : ScriptableObject
     [TextArea]
     public string animalDesription;
     
-    private void OnValidate()
-    {
-        if (string.IsNullOrWhiteSpace(id))
-        {
-            id = Guid.NewGuid().ToString("N"); // 고유 GUID
-            UnityEditor.EditorUtility.SetDirty(this);
-        }
-    }
+
 }

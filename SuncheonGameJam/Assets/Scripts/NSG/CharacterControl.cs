@@ -94,11 +94,6 @@ public class CharacterControl : MonoBehaviour
     }
    void Update()
    {
-       if (Input.GetKeyDown(KeyCode.Escape))
-       {
-           CanControl = !CanControl;
-       }
-       
        if (!CanControl)
            return;
        

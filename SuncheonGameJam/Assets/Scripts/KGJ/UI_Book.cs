@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 
 public class UI_Book : MonoBehaviour
 {
+    public bool IsOpen { get; private set; }
+    
     [SerializeField] private RectTransform root;
     [SerializeField] private Transform contentRoot;
     [SerializeField] private TMP_Text title;
@@ -88,6 +91,7 @@ public class UI_Book : MonoBehaviour
 
     private void OpenBook()
     {
+        IsOpen = true;
         _canvas.enabled = true;
         MakeBookCells();
         _scrollRect.verticalNormalizedPosition = 1;
@@ -107,6 +111,7 @@ public class UI_Book : MonoBehaviour
             .OnComplete(() =>
             {
                 _canvas.enabled = false;
+                IsOpen = false;
             });
     }
 }

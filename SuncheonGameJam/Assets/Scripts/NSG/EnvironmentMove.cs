@@ -11,6 +11,12 @@ public class EnvironmentMove : MonoBehaviour
 
     public void MoveStart()
     {
+        try
+        {
         animator.SetTrigger("move");
+        }catch(System.Exception e)
+        {
+            Debug.Log("애니메이터 없음");
+        }
     }
 }

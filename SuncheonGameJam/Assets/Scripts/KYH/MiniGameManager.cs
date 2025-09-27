@@ -101,7 +101,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
     
     public void TestStartMiniGame()
     {
-        OnStartMiniGame(null);
+        OnStartMiniGame(BookManager.Instance.GetAllEntries()[0]);
     }
     
     

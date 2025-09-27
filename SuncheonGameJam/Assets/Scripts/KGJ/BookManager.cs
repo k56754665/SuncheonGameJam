@@ -6,8 +6,8 @@ public class BookManager : Singleton<BookManager>
     private const string RESOURCES_FOLDER = "AnimalSO";
 
     private List<AnimalStruct> _allEntries = new();
-    private HashSet<string> _unlockedIds = new(); // int → string
-    private Dictionary<string, MonsterLevelType> _highestLevels = new(); // int → string
+    private HashSet<string> _unlockedIds = new();
+    private Dictionary<string, MonsterLevelType> _highestLevels = new();
 
     private const string SaveKey = "BookUnlockProgress";
 
@@ -87,6 +87,19 @@ public class BookManager : Singleton<BookManager>
                 _highestLevels[pair.id] = pair.level;
         }
     }
+    
+    [ContextMenu("Unlock All")]
+    public void UnlockAll()
+    {
+        foreach (var entry in _allEntries)
+        {
+            // 최고 등급으로 해금 (필요에 따라 MonsterLevelType.A 대신 원하는 등급으로)
+            Unlock(entry.id, MonsterLevelType.SSS);
+        }
+
+        Debug.Log($"전체 해금 완료: {_allEntries.Count}개");
+    }
+
 
     [ContextMenu("Reset Save Data")]
     public void ResetSaveData()

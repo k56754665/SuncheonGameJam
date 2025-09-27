@@ -14,7 +14,11 @@ public class MiniGameManager : Singleton<MiniGameManager>
     private InertiaHandleUI handleCtrl;
     private TargetNoiseMoverUI targetCtrl;
     private FishingUIController fishingCtrl;
+    private MiniGameResult resultCtrl;
+    private AnimalPoolData animalPoolData;
     [SerializeField] private Image targetImage;
+    
+    [SerializeField] private AnimalStruct currentAnimal;
     
     
     protected override void Awake()
@@ -23,17 +27,17 @@ public class MiniGameManager : Singleton<MiniGameManager>
         handleCtrl = FindAnyObjectByType<InertiaHandleUI>();
         targetCtrl = FindAnyObjectByType<TargetNoiseMoverUI>();
         fishingCtrl = FindAnyObjectByType<FishingUIController>();
+        resultCtrl = FindAnyObjectByType<MiniGameResult>();
+        animalPoolData = FindAnyObjectByType<AnimalPoolData>();
     }
 
     private void OnEnable()
     {
-        EventBus.SubscribeStartMiniGame(OnStartMiniGame);
         EventBus.SubscribeEndMiniGame(OnEndMiniGame);
     }
 
     private void OnDisable()
     {
-        EventBus.UnsubscribeStartMiniGame(OnStartMiniGame);
         EventBus.UnsubscribeEndMiniGame(OnEndMiniGame);
     }
 
@@ -69,6 +73,8 @@ public class MiniGameManager : Singleton<MiniGameManager>
             fishingCtrl.enabled = true;
             fishingCtrl.Begin(); // 진행도/타이머 초기화 (FishingUIController에 이미 구현됨)
         }
+        
+        EventBus.PublishStartMiniGame(animal);
     }
 
     public void OnEndMiniGame(AnimalStruct animal, bool success)
@@ -84,6 +90,8 @@ public class MiniGameManager : Singleton<MiniGameManager>
         {
             if (SuccessCanvas) SuccessCanvas.SetActive(true);
             if (FailCanvas) FailCanvas.SetActive(false);
+            if (resultCtrl) resultCtrl.SetSuccess(animal);
+            
         }
         else
         {
@@ -101,7 +109,9 @@ public class MiniGameManager : Singleton<MiniGameManager>
     
     public void TestStartMiniGame()
     {
-        OnStartMiniGame(BookManager.Instance.GetAllEntries()[0]);
+        animalPoolData.SetMap(EnvironmentType.Reed, 0);
+        AnimalStruct animal = animalPoolData.PickAnimal();
+        OnStartMiniGame(animal);
     }
     
     

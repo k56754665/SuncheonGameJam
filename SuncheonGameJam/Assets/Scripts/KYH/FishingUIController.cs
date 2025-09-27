@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 /// Handle(플레이어 바)과 Target(물고기)의 가로폭 겹침을 판정하고
@@ -9,6 +10,7 @@ public class FishingUIController : MonoBehaviour
     public RectTransform handle;     // 플레이어 바
     public RectTransform target;     // 물고기(자율 이동)
     public Image progressFill;       // 진행도 표시(선택)
+    public AnimalStruct currentAnimal; // 현재 낚시 대상
 
     [Header("Progress Tuning")]
     [Tooltip("겹칠 때 초당 증가율.")]
@@ -49,6 +51,11 @@ public class FishingUIController : MonoBehaviour
     {
         isRunning = false;
     }
+    
+    private void SetAnimal(AnimalStruct animal)
+    {
+        currentAnimal = animal;
+    }
 
     private void OnEnable()
     {
@@ -59,6 +66,12 @@ public class FishingUIController : MonoBehaviour
             elapsed  = 0f;
             UpdateUI();
         }
+        EventBus.SubscribeStartMiniGame(SetAnimal);
+    }
+    
+    private void OnDisable()
+    {
+        EventBus.UnsubscribeStartMiniGame(SetAnimal);
     }
 
     private void Update()
@@ -87,7 +100,7 @@ public class FishingUIController : MonoBehaviour
         if (progress >= successThreshold)
         {
             isRunning = false;
-            EventBus.PublishEndMiniGame(null,true);
+            EventBus.PublishEndMiniGame(currentAnimal,true);
             return;
         }
 

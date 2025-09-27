@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d7915b72df9411c84f39742db2b3d8, type: 3}
   m_Name: "\uB178\uB791\uBD80\uB9AC\uC800\uC5B4\uC0C8"
   m_EditorClassIdentifier: 
-  id: 19
+  id: 4
   animalName: "\uB178\uB791\uBD80\uB9AC\uC800\uC5B4\uC0C8"
   animalImage: {fileID: 21300000, guid: b23cd5e660bffd247a14087a62cda68c, type: 3}
-  monsterLevel: 0
+  monsterLevel: 1
   environment: 0
-  Bounties: 000000000000000000000000000000000000000000000000
-  difficulty: 0
+  Bounties: 1027000050c30000a0860100400d0300e0930400801a0600
+  difficulty: 1
   animalDesription: "\uBD80\uB9AC\uC5D0 \uB178\uB780 \uC545\uC138\uC0AC\uB9AC \uC7A5\uCC29!
     \uBA78\uC885\uC704\uAE30\uC9C0\uB9CC \uBA4B\uC9D0\uC740 \uCD5C\uAC15."

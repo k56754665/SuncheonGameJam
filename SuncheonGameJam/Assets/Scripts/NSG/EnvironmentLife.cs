@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnvironmentLife : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class EnvironmentLife : MonoBehaviour
     public GameObject protalImage2;
     public ParticleSystem[] particles;
     public ParticleSystem endParticle;
+    public GameObject fingerIcon;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,6 +18,14 @@ public class EnvironmentLife : MonoBehaviour
     }
     public void Damage()
     {
+        if(SceneManager.GetActiveScene().name == "SeaMap")
+        {
+            SoundManager.Instance.Play(SoundType.SeaPortalInteraction);
+        }else
+        {
+            SoundManager.Instance.Play(SoundType.MudPortalInteraction);
+        }
+        
         if (health <= 0)
         {
             Debug.Log("이미 작동됨");
@@ -34,6 +44,7 @@ public class EnvironmentLife : MonoBehaviour
             endParticle.Play();
             protalImage1.SetActive(false);
             protalImage2.SetActive(false);
+            fingerIcon.SetActive(false);
             this.enabled = false;
         }
         foreach (var particle in particles)

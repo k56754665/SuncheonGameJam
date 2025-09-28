@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +27,9 @@ public class CharacterControl : MonoBehaviour
     Vector3 initPos;
     private int sceneIndex;//0 갈대, 1 바다
 
+    public float digCool = 0.5f;
+    private bool digCheck = false;
+    
     private bool _canControl = true;
     public bool CanControl
     {
@@ -68,18 +73,11 @@ public class CharacterControl : MonoBehaviour
         if( SceneManager.GetActiveScene().name == "ReedMap")
         {
             sceneIndex = 0;
+            SoundManager.Instance.PlayBGM(SoundType.BGM_Reed, true);
         }else if( SceneManager.GetActiveScene().name == "SeaMap")
         {
             sceneIndex = 1;
-        }
-        if(sceneIndex == 0)
-        {
-            SoundManager.Instance.PlayBGM(SoundType.BGM_Reed, true);
-            //갈대 노래 재생
-        }else
-        {
             SoundManager.Instance.PlayBGM(SoundType.BGM_Sea, true);
-            //바다 노래 재생
         }
    }
    void OnDestroy()
@@ -105,6 +103,7 @@ public class CharacterControl : MonoBehaviour
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
         {
             targetPortal = collider.transform.GetComponent<EnvironmentLife>();
+            targetPortal.fingerIcon.SetActive(true);
             Debug.Log("포탈 접촉");//잡은 포탈 있으면 거리체크
         }
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Safe")
@@ -119,9 +118,16 @@ public class CharacterControl : MonoBehaviour
         }
         
     }
+    IEnumerator DigCoolTime()
+    {
+        digCheck = true;
+        yield return new WaitForSeconds(digCool);
+        digCheck = false;
+    }
     private void OnTriggerExit(Collider collider) {
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
         {
+            targetPortal.fingerIcon.SetActive(false);
             targetPortal = null;
             Debug.Log("포탈 해제");
         }
@@ -170,6 +176,15 @@ public class CharacterControl : MonoBehaviour
             dir.y = jumpPower;
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if(digCheck == false)
+            {
+                StartCoroutine(DigCoolTime());
+            }
+            else
+            {
+                Debug.Log("딜레이 중");
+                return;
+            }
             if(targetPortal != null)
             {
                 Debug.Log("공격");

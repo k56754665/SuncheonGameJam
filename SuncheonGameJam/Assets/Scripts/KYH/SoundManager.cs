@@ -185,5 +185,7 @@ public enum SoundType {
     CatchingAnimal,
     FailGet,
     BGM_Reed,
-    BGM_Sea
+    BGM_Sea,
+    SeaPortalInteraction,
+    MudPortalInteraction
 }

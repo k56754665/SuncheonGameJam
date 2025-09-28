@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class UI_Book : MonoBehaviour
 {
-    public bool IsOpen { get; private set; }
-    
     [SerializeField] private RectTransform root;
     [SerializeField] private Transform contentRoot;
     [SerializeField] private TMP_Text title;
@@ -91,7 +89,7 @@ public class UI_Book : MonoBehaviour
 
     private void OpenBook()
     {
-        IsOpen = true;
+        UIManager.Instance.TryOpen(UIManager.UIType.Book);
         _canvas.enabled = true;
         MakeBookCells();
         _scrollRect.verticalNormalizedPosition = 1;
@@ -111,7 +109,7 @@ public class UI_Book : MonoBehaviour
             .OnComplete(() =>
             {
                 _canvas.enabled = false;
-                IsOpen = false;
+                UIManager.Instance.Close(UIManager.UIType.Book);
             });
     }
 }

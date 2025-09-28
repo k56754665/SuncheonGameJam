@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class UI_Map : MonoBehaviour
 {
-    public bool IsOpen { get; private set; }
-    
     [SerializeField] private Button okButton;
     [SerializeField] private Button cancelButton;
     [SerializeField] private RectTransform background;
@@ -39,18 +37,23 @@ public class UI_Map : MonoBehaviour
 
     private void OpenMap()
     {
-        _canvasGroup.alpha = 1;
-        _canvasGroup.blocksRaycasts = true;
-        _characterControl.CanControl = false;
-        IsOpen = true;
+        if (UIManager.Instance.TryOpen(UIManager.UIType.Map))
+        {
+            _canvasGroup.alpha = 1;
+            _canvasGroup.blocksRaycasts = true;
+            _characterControl.CanControl = false;
+        }
     }
 
     private void CloseMap()
     {
+        if (UIManager.Instance.CurrentUI != UIManager.UIType.Map)
+            return;
+        
+        UIManager.Instance.Close(UIManager.UIType.Map);
         _canvasGroup.alpha = 0;
         _canvasGroup.blocksRaycasts = false;
         _characterControl.CanControl = true;
-        IsOpen = false;
     }
 
     private void LoadMapScene()

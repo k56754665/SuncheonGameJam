@@ -58,6 +58,9 @@ public class MiniGameManager : Singleton<MiniGameManager>
 
     public void OnStartMiniGame()
     {
+        if (!UIManager.Instance.TryOpen(UIManager.UIType.MiniGame))
+            return;
+
         AnimalStruct animal = animalPoolData.PickAnimal();
         if (!MiniGameCanvas) return;
         MiniGameCanvas.SetActive(true);
@@ -131,5 +134,6 @@ public class MiniGameManager : Singleton<MiniGameManager>
         if (FailCanvas) FailCanvas.SetActive(false);
         characterControl = FindAnyObjectByType<CharacterControl>();
         characterControl.CanControl = true;
+        UIManager.Instance.Close(UIManager.UIType.MiniGame);
     }
 }

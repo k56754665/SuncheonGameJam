@@ -25,11 +25,12 @@ public class UI_BookIcon : MonoBehaviour
     
     private void Update()
     {
-        if (_uiBook != null && FindAnyObjectByType<UI_Map>().IsOpen)
-            return;
-        
         if (Input.GetKeyDown(KeyCode.R))
         {
+            if (UIManager.Instance.CurrentUI == UIManager.UIType.MiniGame ||
+                UIManager.Instance.CurrentUI == UIManager.UIType.Map)
+                return;
+            
             ToggleBook();
         }
     }

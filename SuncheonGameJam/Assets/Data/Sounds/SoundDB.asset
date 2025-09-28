@@ -32,8 +32,10 @@ MonoBehaviour:
   - type: 8
     clip: {fileID: 8300000, guid: 4e24bf88e505e41f9a9ff213dae233a4, type: 3}
   - type: 9
-    clip: {fileID: 8300000, guid: ab2f0d4d4f45f43d5a5cad1a41cbbae3, type: 3}
+    clip: {fileID: 8300000, guid: 535fb1ebf7e304c10978dcb598d3b9e5, type: 3}
   - type: 10
     clip: {fileID: 8300000, guid: 7f372d738af2b4e5c8d3dea06dbe6ee8, type: 3}
   - type: 11
     clip: {fileID: 8300000, guid: b08a4b187c62842869f03d670800de19, type: 3}
+  - type: 12
+    clip: {fileID: 8300000, guid: d3965a6c87f7d45b7a7c7bb28995ea76, type: 3}

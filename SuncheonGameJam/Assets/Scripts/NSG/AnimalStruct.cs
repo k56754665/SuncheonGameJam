@@ -23,10 +23,23 @@ public class AnimalStruct : ScriptableObject
     public Sprite animalImage;
     public MonsterLevelType monsterLevel;
     public EnvironmentType environment;
-    public int[] Bounties = new int[6];
     public float difficulty;
     [TextArea]
     public string animalDesription;
+    public float baseBounty;
     
+    /// <summary>
+    /// rarityIndex(0~5)에 따른 현상금을 반환
+    /// </summary>
+    public int GetBounty(int rarityIndex)
+    {
+        float y = baseBounty * Mathf.Pow(rarityIndex + 1, 2);
 
+        int bounty = Mathf.RoundToInt(y / 10000f) * 10000;
+
+        if (rarityIndex >= 4)
+            bounty *= 5;
+
+        return bounty;
+    }
 }

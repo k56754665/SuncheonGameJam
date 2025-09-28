@@ -7,7 +7,7 @@ public class Test : MonoBehaviour
     void Start()
     {
         Debug.Log("나의 등급 : " + animal.monsterLevel);
-        Debug.Log("나의 현상금 : " +animal.Bounties[(int)animal.monsterLevel]);
+        //Debug.Log("나의 현상금 : " +animal.Bounties[(int)animal.monsterLevel]);
         Debug.Log("나의 환경 : " +animal.environment);
         Debug.Log(animal.animalDesription);
 

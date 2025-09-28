@@ -17,8 +17,8 @@ MonoBehaviour:
   animalImage: {fileID: 21300000, guid: f03dc9887153f484fbc7dc9e33df0081, type: 3}
   monsterLevel: 0
   environment: 2
-  Bounties: 204e00003075000060ea0000f0490200e0930400c0270900
-  difficulty: 1.4
+  difficulty: 0.7
   animalDesription: "\uAC2F\uBC8C \uC704\uB97C \uD3F4\uC9DD\uD3F4\uC9DD! \uC21C\uCC9C\uB9CC\uC758
     \uB300\uD45C \uC778\uAE30\uC2A4\uD0C0.\n\uC9C0\uCF1C\uBCF4\uACE0 \uC788\uC73C\uBA74
     \uAE30\uBD84\uC774 \uC88B\uC544\uC838\uC694."
+  baseBounty: 70000

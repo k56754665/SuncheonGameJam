@@ -286,9 +286,9 @@ RectTransform:
   m_Children:
   - {fileID: 6197936150442637537}
   - {fileID: 7854394499094692292}
-  - {fileID: 1176135560818674911}
-  - {fileID: 2975764115790302837}
   - {fileID: 1382184843084702607}
+  - {fileID: 2975764115790302837}
+  - {fileID: 1176135560818674911}
   - {fileID: 74507356653504434}
   - {fileID: 5225783014659205753}
   - {fileID: 5132794436736860099}
@@ -774,7 +774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194929661655760528, guid: 33e6450af4506e3408fb960a0cb03033, type: 3}
       propertyPath: id
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4194929661655760528, guid: 33e6450af4506e3408fb960a0cb03033, type: 3}
       propertyPath: _stage
@@ -932,7 +932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194929661655760528, guid: 33e6450af4506e3408fb960a0cb03033, type: 3}
       propertyPath: id
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4194929661655760528, guid: 33e6450af4506e3408fb960a0cb03033, type: 3}
       propertyPath: _stage

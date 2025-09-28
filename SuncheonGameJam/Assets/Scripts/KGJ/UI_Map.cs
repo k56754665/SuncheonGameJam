@@ -58,6 +58,7 @@ public class UI_Map : MonoBehaviour
 
     private void LoadMapScene()
     {
+        UIManager.Instance.Close(UIManager.UIType.Map);
         SceneManager.LoadScene("SelectMap");
     }
 }

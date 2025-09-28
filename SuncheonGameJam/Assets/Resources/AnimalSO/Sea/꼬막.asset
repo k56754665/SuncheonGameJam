@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 22
   animalName: "\uAF2C\uB9C9"
   animalImage: {fileID: 21300000, guid: acbf9476300edd340a876d7fd1d1de17, type: 3}
-  monsterLevel: 2
+  monsterLevel: 0
   environment: 2
   difficulty: 0.5
   animalDesription: "\uAC2F\uBC8C \uC18D \uB2E8\uB2E8\uD55C \uC870\uAC1C. \uB9DB\uB3C4

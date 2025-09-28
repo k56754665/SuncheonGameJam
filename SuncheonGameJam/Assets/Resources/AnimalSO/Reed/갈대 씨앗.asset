@@ -18,6 +18,6 @@ MonoBehaviour:
   monsterLevel: 0
   environment: 0
   Bounties: 1027000050c30000a0860100400d0300e0930400801a0600
-  difficulty: 0.5
+  difficulty: 0.3
   animalDesription: "\uBC14\uB78C \uD0C0\uACE0 \uB0A0\uC544\uAC00\uB294 \uC791\uC740
     \uC19C\uBC29\uC6B8. \uC5B4\uB514\uB85C \uAC08\uC9C0 \uC544\uBB34\uB3C4 \uBAB0\uB77C\uC694."

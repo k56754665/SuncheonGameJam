@@ -9,15 +9,15 @@ public class TargetNoiseMoverUI : MonoBehaviour
 
     [Header("Noise Motion")]
     [Tooltip("시간 스케일(Perlin 입력).")]
-    public float noiseScale = 0.6f;
+    private float noiseScale = 0.4f;
     [Tooltip("진행 속도 배율.")] 
-    public float speed = 1.0f;
+    private float speed = 1.0f;
     [Tooltip("가장자리에서 중앙 쪽으로 끌어당기는 비율(0~1).")]
-    public float edgeBias = 0.2f;
+    private float edgeBias = 0.2f;
     [Tooltip("틱 당 속도 변화 제한(px/s).")]
-    public float maxJerk = 1600f;
+    private float maxJerk = 1300f;
     [Tooltip("속도 상한(px/s).")]
-    public float maxSpeed = 1200f;
+    private float maxSpeed = 1000f;
 
     [Header("Range")]
     [Tooltip("0이면 자동 계산(트랙-타깃 너비 기준).")]
@@ -115,10 +115,10 @@ public class TargetNoiseMoverUI : MonoBehaviour
     void ApplyLevel(float level)
     {
         // 승수(지수)는 체감 난이도 튜닝 포인트
-        float s_speed      = Mathf.Pow(level, 1.0f);
-        float s_noiseScale = Mathf.Pow(level, 0.5f);
-        float s_maxJerk    = Mathf.Pow(level, 1.2f);
-        float s_maxSpeed   = Mathf.Pow(level, 1.1f);
+        float s_speed      = Mathf.Pow(level, 0.8f);
+        float s_noiseScale = Mathf.Pow(level, 0.4f);
+        float s_maxJerk    = Mathf.Pow(level, 1.0f);
+        float s_maxSpeed   = Mathf.Pow(level, 0.98f);
         float s_edgeBias   = Mathf.Pow(level, -0.7f);
 
         speed      = baseSpeed      * s_speed;

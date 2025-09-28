@@ -121,7 +121,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
     private float CalLevel(float difficulty, MonsterLevelType monsterLevel)
     {
         int level = (int)monsterLevel;
-        return difficulty + (level - 1) * 0.5f;
+        return difficulty + (level - 1) * 0.2f;
     }
     
     

@@ -14,9 +14,9 @@ public class FishingUIController : MonoBehaviour
 
     [Header("Progress Tuning")]
     [Tooltip("겹칠 때 초당 증가율.")]
-    public float gainPerSec = 0.35f;
+    public float gainPerSec = 0.15f;
     [Tooltip("안 겹칠 때 초당 감소율.")]
-    public float decayPerSec = 0.25f;
+    public float decayPerSec = 0.2f;
     [Tooltip("겹침 판정에 여유 폭(px).")]
     public float extraPadding = 0f;
     [Tooltip("성공으로 간주할 진행도(0~1).")]
@@ -41,7 +41,7 @@ public class FishingUIController : MonoBehaviour
     /// </summary>
     public void Begin()
     {
-        progress = 0f;
+        progress = 0.3f;
         elapsed  = 0f;
         isRunning = true;
         _wasOverlap = false;

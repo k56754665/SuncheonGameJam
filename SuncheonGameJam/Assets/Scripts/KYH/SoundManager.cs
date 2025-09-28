@@ -59,6 +59,10 @@ public class SoundManager : Singleton<SoundManager> {
         // 테스트용 BGM 실행
         //PlayBGM(SoundType.BGM_Test);
     }
+    private void Start()
+    {
+        PlayBGM(SoundType.TitleBGM, true);
+    }
     
     #region Subscribe
     private void OnEnable() {
@@ -177,6 +181,15 @@ public class SoundManager : Singleton<SoundManager> {
     {
         return sfxLoopSource.isPlaying;
     }
+    public string WhatisBGMPlaying()
+    {
+        return bgmSource.clip.name;
+    }
+    public bool BGMISPLAYING()
+    {
+        Debug.Log(bgmSource.clip);
+        return bgmSource.isPlaying;
+    }
 }
 
 public enum SoundType {
@@ -191,5 +204,6 @@ public enum SoundType {
     BGM_Reed,
     BGM_Sea,
     SeaPortalInteraction,
-    MudPortalInteraction
+    MudPortalInteraction,
+    TitleBGM
 }

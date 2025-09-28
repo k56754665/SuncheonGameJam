@@ -18,6 +18,14 @@ public class MoneyManager : Singleton<MoneyManager>
     /// </summary>
     public event Action<float> OnMoneyRemoved;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            AddMoney(1000000);
+        }
+    }
+
     public bool IsGoal()
     {
         return CurrentMoney >= GoalMoney;

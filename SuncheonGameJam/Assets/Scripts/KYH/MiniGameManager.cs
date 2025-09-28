@@ -1,3 +1,4 @@
+using Unity.VisualScripting.InputSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -43,6 +44,7 @@ public class MiniGameManager : Singleton<MiniGameManager>
 
     private void OnDisable()
     {
+        EventBus.SubscribeSceneLoaded(OffResultCanvas);
         EventBus.UnsubscribeEndMiniGame(OnEndMiniGame);
     }
 
@@ -54,7 +56,9 @@ public class MiniGameManager : Singleton<MiniGameManager>
         if (fishingCtrl) fishingCtrl.enabled = false;
         if (SuccessCanvas) SuccessCanvas.SetActive(false);
         if (FailCanvas) FailCanvas.SetActive(false);
+        EventBus.SubscribeSceneLoaded(OffResultCanvas);
     }
+    
 
     public void OnStartMiniGame()
     {

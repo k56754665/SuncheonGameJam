@@ -922,11 +922,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: {fileID: 3564749675978080389}
   target: {fileID: 8423310322184290197}
-  noiseScale: 0.6
-  speed: 1
-  edgeBias: 0.2
-  maxJerk: 1600
-  maxSpeed: 1200
   halfRangeOverride: 0
   currentLevel: 1
 --- !u!114 &6611642538313705502
@@ -947,7 +942,7 @@ MonoBehaviour:
   invertMouseMapping: 0
   mass: 0.3
   damping: 0.75
-  inputForce: 200
+  inputForce: 300
   wallStiffness: 40
   wallDampingFactor: 0.9
   maxSpeed: 1200

@@ -33,12 +33,9 @@ public class AnimalStruct : ScriptableObject
     /// </summary>
     public int GetBounty(int rarityIndex)
     {
-        float y = baseBounty * Mathf.Pow(rarityIndex + 1, 2);
+        float y = baseBounty * Mathf.Pow(rarityIndex + 1, 2f);
 
         int bounty = Mathf.RoundToInt(y / 10000f) * 10000;
-
-        if (rarityIndex >= 4)
-            bounty *= 5;
 
         return bounty;
     }

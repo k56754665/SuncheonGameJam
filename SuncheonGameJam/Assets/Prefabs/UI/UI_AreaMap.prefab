@@ -111,8 +111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -402, y: 188}
-  m_SizeDelta: {x: 1565.3999, y: 339.9603}
+  m_AnchoredPosition: {x: -423, y: 188}
+  m_SizeDelta: {x: 1700, y: 339.9603}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6190078277083521364
 CanvasRenderer:
@@ -402,8 +402,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC21C\uCC9C\uB9CC\uC758 \uC0DD\uD0DC\uACC4!\n\uC5B4\uB514\uBD80\uD130
-    \uAC00\uBCFC\uAE4C?"
+  m_text: "\uC5B4\uB514\uBD80\uD130 \uAC00\uBCFC\uAE4C?\n\uC704\uB85C \uAC08\uC218\uB85D
+    \uD76C\uADC0\uD55C \uB3D9\uBB3C\uC774 \uB098\uC640!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 96ba46f3a2cceac4286a3eb9038705ec, type: 2}
   m_sharedMaterial: {fileID: 4957058790994155984, guid: 96ba46f3a2cceac4286a3eb9038705ec, type: 2}

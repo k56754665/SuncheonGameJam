@@ -127,6 +127,7 @@ public class CharacterControl : MonoBehaviour
     private void OnTriggerExit(Collider collider) {
         if(LayerMask.LayerToName(collider.gameObject.layer) == "Portal")
         {
+            if(targetPortal == null) return;
             targetPortal.fingerIcon.SetActive(false);
             targetPortal = null;
             Debug.Log("포탈 해제");

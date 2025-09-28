@@ -92,6 +92,10 @@ public class SoundManager : Singleton<SoundManager> {
             Debug.Log(e.Value);
         }
     }
+    public void StopSFX()
+    {
+        sfxSource.Stop();
+    }
 
     // -------------------
     // 루프 SFX 제어 (겹침 동안 반복재생 등에 사용)

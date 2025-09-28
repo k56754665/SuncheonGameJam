@@ -42,10 +42,12 @@ public class EnvironmentLife : MonoBehaviour
         {
             Debug.Log("미니 게임 시작");
             endParticle.Play();
+            SoundManager.Instance.StopSFX();
             protalImage1.SetActive(false);
             protalImage2.SetActive(false);
             fingerIcon.SetActive(false);
             this.enabled = false;
+            Destroy(this.gameObject, 2f);
         }
         foreach (var particle in particles)
             particle.Play();
